@@ -3,8 +3,17 @@
 import React from 'react';
 import Link from 'next/link';
 import Logo from '../ui/Logo';
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 const Header = () => {
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <header className="fixed top-0 left-0 w-full z-10 py-4 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl flex justify-between items-center bg-white/80 backdrop-blur-sm p-3 rounded-xl border border-gray-200 shadow-sm">
@@ -14,26 +23,54 @@ const Header = () => {
         </div>
 
         <nav className="hidden md:flex items-center gap-6 text-sm font-bold text-gray-600">
-          <Link href="/" className="hover:text-blue-600 transition-colors">
+          <a
+            href="#hero"
+            onClick={(e) => handleSmoothScroll(e, 'hero')}
+            className="hover:text-blue-600 transition-colors cursor-pointer"
+          >
             Home
-          </Link>
-          <Link href="/templates" className="hover:text-blue-600 transition-colors">
+          </a>
+          <a
+            href="#templates"
+            onClick={(e) => handleSmoothScroll(e, 'templates')}
+            className="hover:text-blue-600 transition-colors cursor-pointer"
+          >
             Templates
-          </Link>
-          <Link href="/how-it-works" className="hover:text-blue-600 transition-colors">
+          </a>
+          <a
+            href="#how-it-works"
+            onClick={(e) => handleSmoothScroll(e, 'how-it-works')}
+            className="hover:text-blue-600 transition-colors cursor-pointer"
+          >
             How It Works
-          </Link>
-          <Link href="/pricing" className="hover:text-blue-600 transition-colors">
+          </a>
+          <a
+            href="#pricing"
+            onClick={(e) => handleSmoothScroll(e, 'pricing')}
+            className="hover:text-blue-600 transition-colors cursor-pointer"
+          >
             Pricing
-          </Link>
+          </a>
         </nav>
 
-        <Link
-          href="/login"
-          className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white"
-        >
-          Sign In
-        </Link>
+        {/* Clerk Authentication */}
+        <SignedOut>
+          <SignInButton mode="modal">
+            <button className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white">
+              Sign In
+            </button>
+          </SignInButton>
+        </SignedOut>
+
+        <SignedIn>
+          <UserButton
+            appearance={{
+              elements: {
+                avatarBox: "w-20 h-20"
+              }
+            }}
+          />
+        </SignedIn>
       </div>
     </header>
   );

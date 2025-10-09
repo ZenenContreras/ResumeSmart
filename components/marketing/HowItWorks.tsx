@@ -4,83 +4,83 @@ import React from 'react';
 
 const HowItWorks = () => {
   return (
-    <div className="bg-white">
+    <div id="how-it-works" className="bg-white">
       {/* Hero Section */}
-      <section className="py-16 sm:py-24">
+      <section className="py-12 sm:py-16 lg:py-22">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-gray-900">
             Your Path to a Winning Resume
           </h2>
-          <p className="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
+          <p className="mt-3 max-w-2xl mx-auto text-base sm:text-lg text-gray-600">
             Discover how our AI platform guides you step by step to create a resume that opens doors and beats Applicant Tracking Systems (ATS).
           </p>
         </div>
       </section>
 
       {/* Steps Section */}
-      <section className="pb-16 sm:pb-24">
+      <section className="pb-12 sm:pb-16 lg:pb-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             {/* Steps Column */}
-            <div className="space-y-12">
+            <div className="space-y-8 sm:space-y-10">
               {/* Step 1 */}
-              <div className="relative flex items-start gap-6 step-item">
+              <div className="relative flex items-start gap-4 sm:gap-5 step-item">
                 <div className="step-line"></div>
-                <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-blue-600 text-white text-xl font-bold z-10">
+                <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white text-lg sm:text-xl font-bold z-10">
                   1
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-2 text-gray-900">
+                  <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-900">
                     Upload or Start Fresh
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-sm sm:text-base text-gray-600">
                     Import your existing resume in any format or choose from our professional templates. Our AI will extract and organize your information automatically.
                   </p>
                 </div>
               </div>
 
               {/* Step 2 */}
-              <div className="relative flex items-start gap-6 step-item">
+              <div className="relative flex items-start gap-4 sm:gap-5 step-item">
                 <div className="step-line"></div>
-                <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-purple-600 text-white text-xl font-bold z-10">
+                <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-purple-600 text-white text-lg sm:text-xl font-bold z-10">
                   2
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-2 text-gray-900">
+                  <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-900">
                     Instant AI Optimization
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-sm sm:text-base text-gray-600">
                     Our AI analyzes your resume and the job you're targeting, suggesting content improvements, action verbs, and industry-specific keywords to maximize your impact and ATS compatibility.
                   </p>
                 </div>
               </div>
 
               {/* Step 3 */}
-              <div className="relative flex items-start gap-6 step-item">
+              <div className="relative flex items-start gap-4 sm:gap-5 step-item">
                 <div className="step-line"></div>
-                <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-amber-500 text-white text-xl font-bold z-10">
+                <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-amber-500 text-white text-lg sm:text-xl font-bold z-10">
                   3
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-2 text-gray-900">
+                  <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-900">
                     Customize and Preview
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-sm sm:text-base text-gray-600">
                     Adjust the design, colors, and fonts with our intuitive editor. See changes in real-time and ensure your resume perfectly reflects your personal brand.
                   </p>
                 </div>
               </div>
 
               {/* Step 4 */}
-              <div className="relative flex items-start gap-6 step-item">
-                <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-green-500 text-white text-xl font-bold z-10">
+              <div className="relative flex items-start gap-4 sm:gap-5 step-item">
+                <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-green-500 text-white text-lg sm:text-xl font-bold z-10">
                   4
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-2 text-gray-900">
+                  <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-900">
                     Download and Get Interviews
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-sm sm:text-base text-gray-600">
                     Export your optimized resume in ATS-proof PDF format with a single click. You'll be ready to apply with confidence and land more interviews.
                   </p>
                 </div>
@@ -89,7 +89,7 @@ const HowItWorks = () => {
 
             {/* AI Assistant Preview */}
             <div className="sticky top-24">
-              <div className="relative h-[650px] bg-gray-900/90 rounded-xl shadow-2xl border border-gray-200 overflow-hidden">
+              <div className="relative h-[400px] sm:h-[500px] lg:h-[550px] bg-gray-900/90 rounded-xl shadow-2xl border border-gray-200 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/10"></div>
 
                 {/* Browser Window Frame */}
@@ -166,18 +166,18 @@ const HowItWorks = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gray-50 border-y border-gray-200 py-16 sm:py-24">
+      <section className="bg-gray-50 border-y border-gray-200 py-10 sm:py-14 lg:py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-gray-900">
             Ready to Make Your Resume Work for You?
           </h2>
-          <p className="mt-4 max-w-xl mx-auto text-lg text-gray-600">
+          <p className="mt-3 max-w-xl mx-auto text-sm sm:text-base text-gray-600">
             Join thousands of professionals who have already landed their dream jobs with ResumeSmart.
           </p>
-          <div className="mt-8">
-            <button className="inline-flex items-center justify-center rounded-lg h-12 px-8 bg-blue-600 text-white text-base font-bold shadow-lg hover:bg-blue-700 transition-transform hover:scale-105">
+          <div className="mt-6">
+            <button className="inline-flex items-center justify-center rounded-lg h-10 sm:h-11 px-6 sm:px-8 bg-blue-600 text-white text-sm sm:text-base font-bold shadow-lg hover:bg-blue-700 transition-transform hover:scale-105">
               <span>Start Now</span>
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </button>

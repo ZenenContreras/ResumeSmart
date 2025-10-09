@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const Hero = () => {
   return (
-    <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div id="hero" className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       {/* Background animated blobs */}
       <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
         <div className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-blue-600 rounded-full blur-3xl opacity-30 animate-pulse"></div>
