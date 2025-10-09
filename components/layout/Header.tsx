@@ -17,10 +17,15 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 w-full z-10 py-4 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl flex justify-between items-center bg-white/80 backdrop-blur-sm p-3 rounded-xl border border-gray-200 shadow-sm">
+        <a
+            href="#hero"
+            onClick={(e) => handleSmoothScroll(e, 'hero')}
+          >
         <div className="flex items-center gap-2">
           <Logo />
           <span className="font-bold text-xl text-gray-900">ResumeSmart</span>
         </div>
+        </a>
 
         <nav className="hidden md:flex items-center gap-6 text-sm font-bold text-gray-600">
           <a
