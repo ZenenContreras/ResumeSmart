@@ -3,187 +3,149 @@
 import React from 'react';
 
 const HowItWorks = () => {
+  const steps = [
+    {
+      number: 1,
+      title: 'Choose Your Approach',
+      titleColor: 'from-blue-600 to-purple-600',
+      description: (
+        <div className="space-y-3">
+          <p className="text-blue-600 font-bold">
+            Have a specific job in mind?
+          </p>
+          <p className="text-gray-700 text-sm">
+            Optimize your resume for that <span className="text-purple-600 font-bold">position</span>.
+          </p>
+          <p className="text-blue-600 font-bold mt-3">
+            Want a general resume?
+          </p>
+          <p className="text-gray-700 text-sm">
+            Create a <span className="text-green-600 font-bold">versatile professional</span> resume.
+          </p>
+        </div>
+      ),
+      imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDJxMn9DVX-WtozIG5dGJSJ30YtPxmYMqQlkSCHNhpAK4582er9Ii-MKhyBBxWqUc2xvCFUaYb7CCiE6IsOi5M_qmVhiNhcmESgBb_J4dJj5zkDCho5deJu_atIZJc2wLW5wPGn4FByMHhTS889V8HC69tjbrKJs8Tto8IXenHzbVEW6q-x5QsmGDzD9dk9qCTGJFPPyH3GYKsAELPDdRQ4deNveSaQxAX_xyXBPyuNl2OOzsF7IIaOVG_L_lf_pO9fBAjOFgmjKik',
+      altText: 'Mode selector screenshot'
+    },
+    {
+      number: 2,
+      title: 'Add Your Experience',
+      titleColor: 'from-purple-600 to-green-600',
+      description: (
+        <div className="space-y-3">
+          <p className="text-gray-700 font-medium">
+            Upload your <span className="text-blue-600 font-bold">current resume</span>, paste text, or connect <span className="text-purple-600 font-bold">LinkedIn</span>.
+          </p>
+          <p className="text-green-600 font-bold mt-3">
+            No work experience? Include:
+          </p>
+          <ul className="text-gray-700 text-sm space-y-1 ml-2">
+            <li>• <span className="text-blue-600 font-bold">Academic</span> or personal projects</li>
+            <li>• <span className="text-purple-600 font-bold">Internships</span> or volunteering</li>
+            <li>• Courses and <span className="text-green-600 font-bold">certifications</span></li>
+            <li>• <span className="text-blue-600 font-bold">Technical skills</span></li>
+          </ul>
+        </div>
+      ),
+      imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBvBnnYi0msJFIbtAicGj7Fwr5Qlra8y9D-PXWqYeCo4YYmLqa99MqzTPzc4rTK6YazHCrqmh1DkAEJrQck5YdHQitQj-P0MjCuDNHM806mpfrZMGAq4rpMeYp7PS6HgmyknSDuwBz6H7JqE7Gt7jD587cizrQfoQVocuCUhOJ0iGenfaPQYs8_NTLyBeZPWTGOg-I74yeMxoM7q5khMjG1Nx8PMS8sV41GTYbCW2VTq6EIgwyJ4PKlIIuMJZuc75EwVhb-BgiY2eo',
+      altText: 'Upload options screenshot'
+    },
+    {
+      number: 3,
+      title: 'AI Optimizes Your Content',
+      titleColor: 'from-green-600 to-blue-600',
+      description: (
+        <div className="space-y-3">
+          <p className="text-gray-700 font-medium">
+            In <span className="text-green-600 font-bold">30 seconds</span>, our{' '}
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold">
+              AI
+            </span>:
+          </p>
+          <ul className="text-gray-700 text-sm space-y-1">
+            <li>• <span className="font-bold">Rewrites</span> bullets with <span className="text-blue-600 font-bold">impact verbs</span></li>
+            <li>• <span className="text-green-600 font-bold">Quantifies</span> achievements when possible</li>
+            <li>• <span className="font-bold">Extracts</span> and adds <span className="text-purple-600 font-bold">relevant keywords</span></li>
+            <li>• <span className="font-bold">Optimizes</span> format to pass <span className="text-blue-600 font-bold">ATS</span></li>
+            <li>• <span className="font-bold">Generates</span> <span className="text-green-600 font-bold">professional summary</span></li>
+          </ul>
+        </div>
+      ),
+      imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDD_Zj51k3LrutIrqKC1m_k3mS9Pb_dodQ2a0eykkBtTuoCZtipX4j0EPJz_E_OuM1j-jc6kg4AZ-PQfaO4Y4eVxEip4-_F0rd3wJI0kREHJNYqnn1EwpZ8rRCa2uRCmsBMXSNwOW1R5oP-JY-rtZsoDPxgCmz0iRUx2gHCU7dPY5gIdl2Ym53s_c7Xa-9q4Z51HaXZQk74mZKDbngtuoZo4iwmB9Qgdv1_quUbloDytsPwt4QUEEU0fcWnhTU-w7ueVvm6aGo2x4s',
+      altText: 'AI processing animation screenshot'
+    },
+    {
+      number: 4,
+      title: 'Download and Apply',
+      titleColor: 'from-blue-600 to-green-600',
+      description: (
+        <div className="space-y-3">
+          <p className="text-blue-600 font-bold">
+            Your resume is ready:
+          </p>
+          <ul className="text-gray-700 text-sm space-y-1">
+            <li>• <span className="text-green-600 font-bold">ATS score</span> + suggestions (if targeted)</li>
+            <li>• Professional <span className="text-purple-600 font-bold">PDF</span> with <span className="text-green-600 font-bold">no paywall</span></li>
+            <li>• <span className="text-blue-600 font-bold">Editable</span> anytime</li>
+          </ul>
+        </div>
+      ),
+      imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDg-oi4Vp5jyxebr6rl1Q8JOjZfqcd-bknjAwfKd-KDQNvwH3gIoCf1ZGgnaPT8M7mQy4dxOlsj8iNpzXUJ3cIB_yR4GyXV0f9arqzaJk-pqaigWxdCfpvj8rWbx7k1mQszDqFe_DCI3wX0ERIgmiz0vwrlF8kT0Pymr4NVgWJIKEgoOukhl8MrjGFH06B-Vz1ODlKQ7tqq2-gbftg9tdZPi_BIr_KtN-ASvZEUFtN7Boe2jj-FEkXNKjOOasL_xXN7YY4hM6dGHHA',
+      altText: 'Results page with ATS score screenshot'
+    }
+  ];
+
   return (
-    <div id="how-it-works" className="bg-white">
-      {/* Hero Section */}
-      <section className="py-12 sm:py-16 lg:py-22">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-gray-900">
-            Your Path to a Winning Resume
-          </h2>
-          <p className="mt-3 max-w-2xl mx-auto text-base sm:text-lg text-gray-600">
-            Discover how our AI platform guides you step by step to create a resume that opens doors and beats Applicant Tracking Systems (ATS).
-          </p>
-        </div>
-      </section>
+    <div id="how-it-works" className="w-full min-h-screen flex flex-col items-center justify-center py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <div className="w-full max-w-7xl mx-auto flex flex-col items-center text-center">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-gray-900 mb-2 sm:mb-4 tracking-tighter">
+          <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">4 </span>Steps to Your <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Perfect</span> Resume
+        </h2>
+        <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-8 sm:mb-12 md:mb-16">
+          Simple, fast, and powered by{' '}
+          <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold">
+            AI
+          </span>
+        </p>
 
-      {/* Steps Section */}
-      <section className="pb-12 sm:pb-16 lg:pb-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-            {/* Steps Column */}
-            <div className="space-y-8 sm:space-y-10">
-              {/* Step 1 */}
-              <div className="relative flex items-start gap-4 sm:gap-5 step-item">
-                <div className="step-line"></div>
-                <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-600 text-white text-lg sm:text-xl font-bold z-10">
-                  1
-                </div>
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-900">
-                    Upload or Start Fresh
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 text-left relative">
+          {steps.map((step, index) => (
+            <div
+              key={index}
+              className=" hover:cursor-pointer bg-white p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl border border-gray-100 hover:border-blue-600 transition-all duration-300 transform hover:-translate-y-2 flex flex-col"
+            >
+              <div className="mb-3 sm:mb-4">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white flex items-center justify-center font-bold text-base sm:text-xl flex-shrink-0">
+                    {step.number}
+                  </div>
+                  <h3 className={`text-sm sm:text-base font-bold bg-gradient-to-r ${step.titleColor} bg-clip-text text-transparent`}>
+                    {step.title}
                   </h3>
-                  <p className="text-sm sm:text-base text-gray-600">
-                    Import your existing resume in any format or choose from our professional templates. Our AI will extract and organize your information automatically.
-                  </p>
                 </div>
               </div>
 
-              {/* Step 2 */}
-              <div className="relative flex items-start gap-4 sm:gap-5 step-item">
-                <div className="step-line"></div>
-                <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-purple-600 text-white text-lg sm:text-xl font-bold z-10">
-                  2
-                </div>
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-900">
-                    Instant AI Optimization
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-600">
-                    Our AI analyzes your resume and the job you're targeting, suggesting content improvements, action verbs, and industry-specific keywords to maximize your impact and ATS compatibility.
-                  </p>
-                </div>
+              <div className="text-sm sm:text-base mb-4 sm:mb-6 flex-grow">
+                {step.description}
               </div>
 
-              {/* Step 3 */}
-              <div className="relative flex items-start gap-4 sm:gap-5 step-item">
-                <div className="step-line"></div>
-                <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-amber-500 text-white text-lg sm:text-xl font-bold z-10">
-                  3
-                </div>
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-900">
-                    Customize and Preview
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-600">
-                    Adjust the design, colors, and fonts with our intuitive editor. See changes in real-time and ensure your resume perfectly reflects your personal brand.
-                  </p>
-                </div>
-              </div>
-
-              {/* Step 4 */}
-              <div className="relative flex items-start gap-4 sm:gap-5 step-item">
-                <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-green-500 text-white text-lg sm:text-xl font-bold z-10">
-                  4
-                </div>
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-900">
-                    Download and Get Interviews
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-600">
-                    Export your optimized resume in ATS-proof PDF format with a single click. You'll be ready to apply with confidence and land more interviews.
-                  </p>
-                </div>
+              <div className="aspect-[16/10] bg-gray-100 rounded-lg sm:rounded-xl overflow-hidden shadow-md mt-auto relative">
+                <img
+                  alt={step.altText}
+                  className="w-full h-full object-cover"
+                  src={step.imageUrl}
+                />
               </div>
             </div>
-
-            {/* AI Assistant Preview */}
-            <div className="sticky top-24">
-              <div className="relative h-[400px] sm:h-[500px] lg:h-[550px] bg-gray-900/90 rounded-xl shadow-2xl border border-gray-200 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/10"></div>
-
-                {/* Browser Window Frame */}
-                <div className="relative z-10 flex flex-col h-full">
-                  <div className="flex-shrink-0 p-3 bg-gray-800/50 backdrop-blur-sm border-b border-gray-700">
-                    <div className="flex items-center gap-2">
-                      <span className="w-3 h-3 rounded-full bg-red-500"></span>
-                      <span className="w-3 h-3 rounded-full bg-yellow-500"></span>
-                      <span className="w-3 h-3 rounded-full bg-green-500"></span>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex-grow p-6 overflow-y-auto">
-                    <div className="flex flex-col h-full">
-                      <div className="mb-6">
-                        <h4 className="font-bold text-lg text-white">ResumeSmart AI Assistant</h4>
-                        <p className="text-sm text-gray-300">Analyzing your profile for "Frontend Developer" position...</p>
-                      </div>
-
-                      {/* AI Suggestions */}
-                      <div className="bg-blue-600/20 p-4 rounded-lg mb-4 border border-blue-600/30">
-                        <div className="flex items-start gap-3">
-                          <svg className="w-6 h-6 text-blue-400 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                          </svg>
-                          <div>
-                            <h5 className="font-semibold text-blue-400">Keyword Suggestion</h5>
-                            <p className="text-sm text-gray-200">Consider adding "Responsive Design" to your skills. It's one of the top 10 keywords for this role.</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="bg-purple-600/20 p-4 rounded-lg mb-4 border border-purple-600/30">
-                        <div className="flex items-start gap-3">
-                          <svg className="w-6 h-6 text-purple-400 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                          </svg>
-                          <div>
-                            <h5 className="font-semibold text-purple-400">ATS Optimization</h5>
-                            <p className="text-sm text-gray-200">Your "Experience" section has 95% ATS compatibility. Excellent! To improve, quantify achievements with numbers.</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="bg-amber-500/20 p-4 rounded-lg border border-amber-500/30">
-                        <div className="flex items-start gap-3">
-                          <svg className="w-6 h-6 text-amber-400 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                          </svg>
-                          <div>
-                            <h5 className="font-semibold text-amber-400">Writing Enhancement</h5>
-                            <p className="text-sm text-gray-200">Instead of "Responsible for...", try action verbs like "Led the development of..." for greater impact.</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Download Button */}
-                      <div className="mt-auto pt-6 text-center">
-                        <button className="w-full flex items-center justify-center gap-2 rounded-lg h-11 px-6 bg-green-500 text-white text-base font-bold shadow-lg hover:bg-green-600 transition-transform hover:scale-105">
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                          </svg>
-                          <span>Download Optimized Resume</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="bg-gray-50 border-y border-gray-200 py-10 sm:py-14 lg:py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-gray-900">
-            Ready to Make Your Resume Work for You?
-          </h2>
-          <p className="mt-3 max-w-xl mx-auto text-sm sm:text-base text-gray-600">
-            Join thousands of professionals who have already landed their dream jobs with ResumeSmart.
-          </p>
-          <div className="mt-6">
-            <button className="inline-flex items-center justify-center rounded-lg h-10 sm:h-11 px-6 sm:px-8 bg-blue-600 text-white text-sm sm:text-base font-bold shadow-lg hover:bg-blue-700 transition-transform hover:scale-105">
-              <span>Start Now</span>
-              <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </button>
-          </div>
+        <div className="mt-8 sm:mt-12 md:mt-16 lg:mt-20">
+          <button className="text-sm sm:text-base md:text-lg font-bold py-3 px-6 sm:py-4 sm:px-8 md:px-10 rounded-lg sm:rounded-xl text-white transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 shadow-xl sm:shadow-2xl hover:shadow-blue-600/40 w-full sm:w-auto max-w-xs">
+            Try Now - Free →
+          </button>
         </div>
-      </section>
+      </div>
     </div>
   );
 };
