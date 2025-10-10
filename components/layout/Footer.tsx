@@ -3,11 +3,22 @@
 import React from 'react';
 import Logo from '../ui/Logo';
 import { Twitter, Linkedin, Instagram } from 'lucide-react';
+import Link from 'next/link';
 
 const Footer = () => {
 
     const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
       e.preventDefault();
+
+    // Check if we're on the home page
+    if (window.location.pathname !== '/') {
+      // If not on home page, navigate to home page with hash
+      window.location.href = `/#${targetId}`;
+      return;
+    }
+
+    // If already on home page, smooth scroll to element
+
       const element = document.getElementById(targetId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -50,7 +61,7 @@ const Footer = () => {
               <li><a href="#" className="hover:text-gray-900">Blog</a></li>
               <li><a href="#" className="hover:text-gray-900">Templates</a></li>
               <li><a href="#" className="hover:text-gray-900">Examples</a></li>
-              <li><a href="#" className="hover:text-gray-900">FAQ</a></li>
+              <li><Link onClick={(e) => handleSmoothScroll(e, 'faq')} href="#faq" className="hover:text-gray-900">FAQ</Link></li>
             </ul>
           </div>
 
@@ -82,19 +93,22 @@ const Footer = () => {
         {/* Social & Copyright */}
         <div className="mt-10 border-t border-gray-200 pt-6 flex flex-col sm:flex-row justify-between items-center">
           <div className="flex gap-4 mb-4 sm:mb-0 items-center">
-            <a href="#" aria-label="Instagram" className="text-gray-600 hover:text-gray-900">
-              <Instagram className="h-5 w-5" />
+            <a href="https://www.instagram.com/resumesmart.io/" target='_blank' aria-label="Instagram" className="text-gray-600 hover:text-gray-900">
+              <img className="h-5 w-5" src='/iconos/instagramIcon.svg'/>
             </a>
-            <a href="#" aria-label="X" className="text-gray-600 hover:text-gray-900">
+            <a href="https://x.com/ResumeSmartio" target='_blank' aria-label="X" className="text-gray-600 hover:text-gray-900">
               <img className="h-5 w-5" src='/iconos/xIcon.svg'/>
             </a>
-            <a href="#" aria-label="Tiktok" className="text-gray-600 hover:text-gray-900">
+            <a href="#" aria-label="Tiktok" target='_blank' className="text-gray-600 hover:text-gray-900">
               <img className="h-5 w-5" src='/iconos/tiktokIcon.svg'/>
             </a>
-            <a href="#" aria-label="LinkedIn" className="text-gray-600 hover:text-gray-900">
-              <Linkedin className="h-5 w-5" />
+            <a href="https://www.threads.com/@resumesmart.io" target='_blank' aria-label="Threads" className="text-gray-600 hover:text-gray-900">
+              <img className="h-5 w-5" src='/iconos/threadsIcon.svg'/>
             </a>
-            <a href="#" aria-label="Tiktok" className="text-gray-600 hover:text-gray-900">
+            <a href="#" aria-label="LinkedIn" target='_blank' className="text-gray-600 hover:text-gray-900">
+              <img className="h-5 w-5" src='/iconos/linkedinIcon.svg'/>
+            </a>
+            <a href="#" aria-label="Reddit" target='_blank' className="text-gray-600 hover:text-gray-900">
               <img className="h-5 w-5" src='/iconos/redditIcon.svg'/>
             </a>
           </div>

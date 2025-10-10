@@ -8,6 +8,15 @@ import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 const Header = () => {
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
+
+    // Check if we're on the home page
+    if (window.location.pathname !== '/') {
+      // If not on home page, navigate to home page with hash
+      window.location.href = `/#${targetId}`;
+      return;
+    }
+
+    // If already on home page, smooth scroll to element
     const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -56,6 +65,12 @@ const Header = () => {
           >
             Pricing
           </a>
+          <Link
+            href="/faq"
+            className="hover:text-blue-600 transition-colors cursor-pointer"
+          >
+            FAQ
+          </Link>
         </nav>
 
         {/* Clerk Authentication */}
