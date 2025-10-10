@@ -40,14 +40,14 @@ const Header = () => {
             onClick={(e) => handleSmoothScroll(e, 'why-yours-dont-work')}
             className="hover:text-blue-600 transition-colors cursor-pointer"
           >
-            Why Yours Dont Works
+            Why Yours Don't Works?
           </a>
           <a
             href="#how-it-works"
             onClick={(e) => handleSmoothScroll(e, 'how-it-works')}
             className="hover:text-blue-600 transition-colors cursor-pointer"
           >
-            How It Works
+            How It Works?
           </a>
           <a
             href="#pricing"
