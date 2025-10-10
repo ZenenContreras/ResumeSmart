@@ -36,11 +36,11 @@ const Header = () => {
             Home
           </a>
           <a
-            href="#templates"
-            onClick={(e) => handleSmoothScroll(e, 'templates')}
+            href="#why-yours-dont-work"
+            onClick={(e) => handleSmoothScroll(e, 'why-yours-dont-work')}
             className="hover:text-blue-600 transition-colors cursor-pointer"
           >
-            Templates
+            Why Yours Dont Works
           </a>
           <a
             href="#how-it-works"
