@@ -47,7 +47,7 @@ export const ReviewCard = ({
   return (
     <figure
       className={cn(
-        "relative h-full w-fit cursor-pointer overflow-hidden rounded-xl border p-4 sm:w-36 lg:w-78",
+        "relative h-full cursor-pointer overflow-hidden rounded-xl border p-4 w-48 lg:w-78 shadow-md ",
         // light styles
         "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
         // dark styles
