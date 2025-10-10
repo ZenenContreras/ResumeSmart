@@ -118,13 +118,13 @@ const HowItWorks = () => {
           </span>
         </p>
 
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 text-left relative">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-left relative">
           {steps.map((step, index) => (
             <div
               key={index}
               className={`hover:cursor-pointer bg-white p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl border transition-all duration-300 transform flex flex-col ${
                 activeCard === index
-                  ? 'border-blue-600 -translate-y-2 shadow-2xl scale-105'
+                  ? 'border-blue-600 -translate-y-2 shadow-2xl scale-103 lg:scale-105'
                   : 'border-gray-100'
               }`}
             >
