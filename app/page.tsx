@@ -3,7 +3,8 @@ import Hero from '@/components/marketing/Hero';
 import HowItWorks from '@/components/marketing/HowItWorks';
 import PricingCards from '@/components/marketing/PricingCards';
 import Footer from '@/components/layout/Footer';
-import Testimonials from '@/components/marketing/Testimonials'
+import WhyYoursDontWork from '@/components/marketing/WhyYoursDontWork';
+import Testimonials from '@/components/marketing/Testimonials';
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Header />
       <Hero />
       <Testimonials />
+      <WhyYoursDontWork />
       <HowItWorks/>
       <PricingCards/>
       <Footer />

@@ -1,8 +1,17 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const HowItWorks = () => {
+  const [activeCard, setActiveCard] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveCard((prev) => (prev + 1) % 4);
+    }, 2000); // Change active card every 4 second
+
+    return () => clearInterval(interval);
+  }, []);
   const steps = [
     {
       number: 1,
@@ -96,9 +105,9 @@ const HowItWorks = () => {
   ];
 
   return (
-    <div id="how-it-works" className="w-full min-h-screen flex flex-col items-center justify-center py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div id="how-it-works" className="w-full min-h-screen flex flex-col items-center justify-center py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="w-full max-w-7xl mx-auto flex flex-col items-center text-center">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-gray-900 mb-2 sm:mb-4 tracking-tighter">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-2 sm:mb-4 tracking-tighter">
           <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">4 </span>Steps to Your <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Perfect</span> Resume
         </h2>
         <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-8 sm:mb-12 md:mb-16">
@@ -112,7 +121,11 @@ const HowItWorks = () => {
           {steps.map((step, index) => (
             <div
               key={index}
-              className=" hover:cursor-pointer bg-white p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl border border-gray-100 hover:border-blue-600 transition-all duration-300 transform hover:-translate-y-2 flex flex-col"
+              className={`hover:cursor-pointer bg-white p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl border transition-all duration-300 transform flex flex-col ${
+                activeCard === index
+                  ? 'border-blue-600 -translate-y-2 shadow-2xl scale-105'
+                  : 'border-gray-100'
+              }`}
             >
               <div className="mb-3 sm:mb-4">
                 <div className="flex items-center gap-2 sm:gap-3">
