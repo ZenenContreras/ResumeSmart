@@ -213,12 +213,14 @@ const WhyYoursDontWork = () => {
         <a 
             href="#how-it-works"
             onClick={(e) => handleSmoothScroll(e, 'how-it-works')}
-            className=" text-sm sm:text-base md:text-lg font-bold py-3 px-6 sm:py-4 sm:px-8 md:px-10 rounded-lg sm:rounded-xl text-white transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 shadow-xl sm:shadow-2xl hover:shadow-blue-600/40 w-full sm:w-auto max-w-xs">
-            See How It Works →
+            className="group inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-bold text-white transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/40 focus:outline-none focus:ring-4 focus:ring-blue-600/50 w-full sm:w-auto max-w-xs"
+            >
+                See How It Works
+                <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
         </a>
-      </div>
+        </div>
     </div>
-  );
+    );
 };
 
 export default WhyYoursDontWork;
