@@ -40,10 +40,6 @@ const FAQ = () => {
           answer: 'Because job hunting isn\'t monthly. You use the tool intensively for 2-4 weeks and then you get a job. Why pay $10/month for 6 months when you\'ll only use it for 1 month?',
         },
         {
-          question: 'What\'s the refund guarantee?',
-          answer: 'If your optimized resume doesn\'t pass ATS (score >80) after applying our suggestions, we\'ll refund $19 + $10 extra. Just send us a screenshot of the score.',
-        },
-        {
           question: 'Do resumes expire?',
           answer: 'No. The Pro plan includes 10 resumes that you can use whenever you want. There\'s no expiration date.',
         },
@@ -167,7 +163,7 @@ const FAQ = () => {
       items: [
         {
           question: 'What do I do if my resume doesn\'t generate?',
-          answer: 'First, verify that the job description has at least 100 characters and your experience is complete. If the problem persists, contact us at support@resumesmart.io - we respond within 24 hours.',
+          answer: 'First, verify that the job description has at least 100 characters and your experience is complete. If the problem persists, contact us at resumesmart0@gmail.com - we respond within 24 hours.',
         },
         {
           question: 'Do you offer customer support?',
@@ -275,7 +271,7 @@ const FAQ = () => {
             </p>
             <a href="mailto:resumesmart0@gmail.com">
 
-            <button className="text-sm sm:text-base font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-lg sm:rounded-xl text-white transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 shadow-xl hover:shadow-blue-600/40">
+            <button className="text-sm sm:text-base font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-lg sm:rounded-xl text-white transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transform hover:scale-102 shadow-xl hover:shadow-blue-600/40">
               Contact Support 
             </button>
             </a>

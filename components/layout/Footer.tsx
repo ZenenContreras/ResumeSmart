@@ -7,13 +7,13 @@ import Link from 'next/link';
 
 const Footer = () => {
 
-    const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string, link: string) => {
       e.preventDefault();
 
     // Check if we're on the home page
-    if (window.location.pathname !== '/') {
+    if (window.location.pathname !== link ){
       // If not on home page, navigate to home page with hash
-      window.location.href = `/#${targetId}`;
+      window.location.href = `${link}#${targetId}`;
       return;
     }
 
@@ -28,7 +28,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-50 border-t border-gray-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {/* Logo & Branding */}
           <div className="col-span-2 sm:col-span-3 md:col-span-1">
             <div className="flex items-center gap-3 mb-4">
@@ -46,24 +46,13 @@ const Footer = () => {
               Product
             </h3>
             <ul className="space-y-2 text-sm text-gray-600">
-              <li><a onClick={(e) => handleSmoothScroll(e, 'why-yours-dont-work')}href="#why-yours-dont-work" className="hover:text-gray-900">Why Yours Don't Works?</a></li>
-              <li><a onClick={(e) => handleSmoothScroll(e, 'how-it-works')} href="#how-it-works" className="hover:text-gray-900">How it Works</a></li>
-              <li><a href="#pricing" className="hover:text-gray-900" onClick={(e) => handleSmoothScroll(e, 'pricing')}>Pricing</a></li>
+              <li><a onClick={(e) => handleSmoothScroll(e, 'why-yours-dont-work','/')}href="#why-yours-dont-work" className="hover:text-gray-900">Why Yours Don't Works?</a></li>
+              <li><a onClick={(e) => handleSmoothScroll(e, 'how-it-works','/')} href="#how-it-works" className="hover:text-gray-900">How it Works</a></li>
+              <li><a href="#pricing" className="hover:text-gray-900" onClick={(e) => handleSmoothScroll(e, 'pricing','/')}>Pricing</a></li>
+              <li><Link onClick={(e) => handleSmoothScroll(e, 'faq','/faq')} href="#faq" className="hover:text-gray-900">FAQ</Link></li>
             </ul>
           </div>
 
-          {/* Resources */}
-          <div className='text-center'>
-            <h3 className="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">
-              Resources
-            </h3>
-            <ul className="space-y-2 text-sm text-gray-600">
-              <li><a href="#" className="hover:text-gray-900">Blog</a></li>
-              <li><a href="#" className="hover:text-gray-900">Templates</a></li>
-              <li><a href="#" className="hover:text-gray-900">Examples</a></li>
-              <li><Link onClick={(e) => handleSmoothScroll(e, 'faq')} href="#faq" className="hover:text-gray-900">FAQ</Link></li>
-            </ul>
-          </div>
 
           {/* Company */}
           <div className='text-center'>

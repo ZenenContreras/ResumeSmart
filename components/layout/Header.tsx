@@ -6,29 +6,31 @@ import Logo from '../ui/Logo';
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 const Header = () => {
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-    e.preventDefault();
 
-    // Check if we're on the home page
-    if (window.location.pathname !== '/') {
-      // If not on home page, navigate to home page with hash
-      window.location.href = `/#${targetId}`;
-      return;
-    }
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string, link: string) => {
+        e.preventDefault();
 
-    // If already on home page, smooth scroll to element
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
+      // Check if we're on the home page
+      if (window.location.pathname !== link ){
+        // If not on home page, navigate to home page with hash
+        window.location.href = `${link}#${targetId}`;
+        return;
+      }
+
+      // If already on home page, smooth scroll to element
+
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
 
   return (
     <header className="fixed top-0 left-0 w-full z-100 py-4 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl flex justify-between items-center bg-white/80 backdrop-blur-sm p-3 rounded-xl border border-gray-200 shadow-sm">
         <a
             href="#hero"
-            onClick={(e) => handleSmoothScroll(e, 'hero')}
+            onClick={(e) => handleSmoothScroll(e, 'hero','/')}
           >
         <div className="flex items-center gap-2">
           <Logo />
@@ -39,28 +41,28 @@ const Header = () => {
         <nav className="hidden md:flex items-center gap-6 text-sm font-bold text-gray-600">
           <a
             href="#hero"
-            onClick={(e) => handleSmoothScroll(e, 'hero')}
+            onClick={(e) => handleSmoothScroll(e, 'hero','/')}
             className="hover:text-blue-600 transition-colors cursor-pointer"
           >
             Home
           </a>
           <a
             href="#why-yours-dont-work"
-            onClick={(e) => handleSmoothScroll(e, 'why-yours-dont-work')}
+            onClick={(e) => handleSmoothScroll(e, 'why-yours-dont-work','/')}
             className="hover:text-blue-600 transition-colors cursor-pointer"
           >
             Why Yours Don't Works?
           </a>
           <a
             href="#how-it-works"
-            onClick={(e) => handleSmoothScroll(e, 'how-it-works')}
+            onClick={(e) => handleSmoothScroll(e, 'how-it-works','/')}
             className="hover:text-blue-600 transition-colors cursor-pointer"
           >
             How It Works?
           </a>
           <a
             href="#pricing"
-            onClick={(e) => handleSmoothScroll(e, 'pricing')}
+            onClick={(e) => handleSmoothScroll(e, 'pricing','/')}
             className="hover:text-blue-600 transition-colors cursor-pointer"
           >
             Pricing
