@@ -123,27 +123,21 @@ const PricingCards = () => {
                   </svg>
                   <span className="ml-1.5 sm:ml-2">PDF Download without paywall</span>
                 </li>
-                <li className="flex items-start">
-                  <svg className="flex-shrink-0 h-4 w-4 sm:h-5 sm:w-5 mt-0.5 text-green-500" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24">
-                    <path d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span className="ml-1.5 sm:ml-2">15 premium templates</span>
-                </li>
-                <li className="flex items-start">
-                  <svg className="flex-shrink-0 h-4 w-4 sm:h-5 sm:w-5 mt-0.5 text-green-500" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24">
-                    <path d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span className="ml-1.5 sm:ml-2">LinkedIn optimizer</span>
-                </li>
-                <li className="flex items-start">
-                  <svg className="flex-shrink-0 h-4 w-4 sm:h-5 sm:w-5 mt-0.5 text-green-500" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24">
-                    <path d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span className="ml-1.5 sm:ml-2">Interview prep (10 questions)</span>
-                </li>
 
                 {/* Disabled features - Hidden on mobile */}
                 <div className="hidden sm:block space-y-2 sm:space-y-2.5">
+                  <li className="flex items-start text-gray-400">
+                    <svg className="flex-shrink-0 h-4 w-4 sm:h-5 sm:w-5 mt-0.5" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24">
+                      <path d="M18 6L6 18M6 6l12 12"></path>
+                    </svg>
+                    <span className="ml-1.5 sm:ml-2">LinkedIn optimizer</span>
+                  </li>
+                  <li className="flex items-start text-gray-400">
+                    <svg className="flex-shrink-0 h-4 w-4 sm:h-5 sm:w-5 mt-0.5" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24">
+                      <path d="M18 6L6 18M6 6l12 12"></path>
+                    </svg>
+                    <span className="ml-1.5 sm:ml-2">All Premium templates</span>
+                  </li>
                   <li className="flex items-start text-gray-400">
                     <svg className="flex-shrink-0 h-4 w-4 sm:h-5 sm:w-5 mt-0.5" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24">
                       <path d="M18 6L6 18M6 6l12 12"></path>
@@ -161,7 +155,7 @@ const PricingCards = () => {
             </div>
             <div className="mt-4 sm:mt-6">
               <Link
-                href="/purchase?plan=pro"
+                href="/dashboard/upgrade"
                 className="block w-full text-center rounded-lg px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-md"
               >
                 Select PRO Plan
@@ -214,7 +208,7 @@ const PricingCards = () => {
             </div>
             <div className="mt-4 sm:mt-6">
               <Link
-                href="/purchase?plan=ultimate"
+                href="/dashboard/upgrade"
                 className="block w-full text-center rounded-lg px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-semibold text-purple-600 bg-purple-100 hover:bg-purple-200 transition-colors"
               >
                 Get ULTIMATE

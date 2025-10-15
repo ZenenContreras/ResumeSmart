@@ -2,6 +2,7 @@ import { auth } from '@clerk/nextjs/server';
 import { NextResponse, NextRequest } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabase/client';
 import { renderToStream } from '@react-pdf/renderer';
+import type { ReactElement } from 'react';
 import ModernTemplate from '@/components/pdf-templates/ModernTemplate';
 import HarvardATSTemplate from '@/components/pdf-templates/HarvardATSTemplate';
 import PurpleExecutiveTemplate from '@/components/pdf-templates/PurpleExecutiveTemplate';
@@ -49,6 +50,7 @@ export async function POST(req: NextRequest) {
       data: data,
     });
 
+    // @ts-ignore - Template components return valid Document elements
     const stream = await renderToStream(document);
 
     // Convert stream to buffer
@@ -150,6 +152,7 @@ export async function GET(req: Request) {
         data: resume.content,
       });
 
+      // @ts-ignore - Template components return valid Document elements
       const stream = await renderToStream(document);
 
       // Convertir stream a buffer

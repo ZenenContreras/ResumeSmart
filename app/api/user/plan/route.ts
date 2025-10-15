@@ -30,7 +30,7 @@ export async function GET() {
           credits_remaining: 1,
           credits_total: 1,
         })
-        .select('plan, purchased_at, credits_remaining, credits_total')
+        .select('plan, purchased_at, credits_remaining, credits_total, expires_at')
         .single();
 
       if (createError) {
@@ -42,6 +42,10 @@ export async function GET() {
     } else if (error) {
       console.error('Error fetching user plan:', error);
       return NextResponse.json({ error: 'Database error' }, { status: 500 });
+    }
+
+    if (!user) {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
     const planType = user.plan as PlanType;

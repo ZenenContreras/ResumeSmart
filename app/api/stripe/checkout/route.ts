@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
         userId,
         plan,
         credits: planConfig.credits.toString(),
-        ...(plan === 'ultimate' && { durationDays: planConfig.durationDays.toString() }),
+        ...(plan === 'ultimate' && 'durationDays' in planConfig && { durationDays: planConfig.durationDays.toString() }),
       },
       customer_email: undefined, // Clerk will provide email
     });

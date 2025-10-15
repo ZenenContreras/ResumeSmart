@@ -14,9 +14,10 @@ export async function GET() {
       )
     );
 
+    // @ts-ignore - renderToBuffer returns a valid Buffer
     const pdfBuffer = await renderToBuffer(TestDoc);
 
-    return new NextResponse(pdfBuffer, {
+    return new NextResponse(pdfBuffer as any, {
       headers: {
         'Content-Type': 'application/pdf',
       },

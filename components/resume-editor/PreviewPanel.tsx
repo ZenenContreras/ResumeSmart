@@ -45,7 +45,7 @@ export function PreviewPanel({
   const enabledSectionIds = sections.filter(s => s.enabled).map(s => s.id);
 
   const filteredResumeData = useMemo(() => {
-    const filtered: ResumeData = { ...resumeData };
+    const filtered: any = { ...resumeData };
 
     // Only include sections that are enabled
     if (!enabledSectionIds.includes('personalInfo')) filtered.personalInfo = undefined;
@@ -60,7 +60,7 @@ export function PreviewPanel({
     if (!enabledSectionIds.includes('volunteer')) filtered.volunteer = [];
     if (!enabledSectionIds.includes('awards')) filtered.awards = [];
 
-    return filtered;
+    return filtered as ResumeData;
   }, [resumeData, enabledSectionIds]);
 
   return (

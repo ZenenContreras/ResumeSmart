@@ -85,7 +85,7 @@ export async function POST(req: Request) {
           user = existingUser;
         }
 
-        if (user.credits_remaining < 1 && user.plan !== 'ultimate') {
+        if (user && user.credits_remaining < 1 && user.plan !== 'ultimate') {
           sendSSE(controller, {
             phase: 'error',
             message: '❌ Insufficient credits',
@@ -232,7 +232,7 @@ Return JSON with this structure:
           .single();
 
         // Step 6: Deduct credits
-        if (user.plan !== 'ultimate') {
+        if (user && user.plan !== 'ultimate') {
           await supabaseAdmin
             .from('users')
             .update({ credits_remaining: user.credits_remaining - 1 })
@@ -249,7 +249,7 @@ Return JSON with this structure:
             atsScore,
             keywordsMatched: matchedKeywords.length,
             keywordsTotal: keywords.length,
-            creditsRemaining: user.plan === 'ultimate' ? 999 : user.credits_remaining - 1,
+            creditsRemaining: user ? (user.plan === 'ultimate' ? 999 : user.credits_remaining - 1) : 0,
           },
         });
 

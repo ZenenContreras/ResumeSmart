@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Resume, ResumeData, SectionConfig } from '@/lib/types/resume';
 import { TopBar } from './TopBar';
 import { EditorPanel } from './EditorPanel';
@@ -53,7 +53,7 @@ export function ResumeEditorShell({
   const [isMobileView, setIsMobileView] = useState(false);
 
   // Check for mobile view
-  useState(() => {
+  useEffect(() => {
     const checkMobile = () => {
       setIsMobileView(window.innerWidth < 1024);
     };
