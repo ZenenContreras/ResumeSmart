@@ -57,7 +57,21 @@ export async function POST(req: Request) {
     const email = email_addresses[0]?.email_address;
     const name = `${first_name || ''} ${last_name || ''}`.trim() || null;
 
+    console.log('[Webhook] Creating user:', { id, email, name });
+
     try {
+      // First check if user already exists by email
+      const { data: existingUser } = await supabaseAdmin
+        .from('users')
+        .select('id')
+        .eq('email', email)
+        .single();
+
+      if (existingUser) {
+        console.log(`[Webhook] User with email ${email} already exists with ID: ${existingUser.id}`);
+        return new Response('User already exists', { status: 200 });
+      }
+
       // Create user in Supabase with free plan and 1 credit
       const { data, error } = await supabaseAdmin
         .from('users')
@@ -76,16 +90,16 @@ export async function POST(req: Request) {
       if (error) {
         // If user already exists, ignore the error
         if (error.code === '23505') {
-          console.log(`User ${id} already exists in database`);
+          console.log(`[Webhook] User ${id} already exists in database (duplicate key)`);
           return new Response('User already exists', { status: 200 });
         }
         throw error;
       }
 
-      console.log('User created in Supabase:', data);
+      console.log('[Webhook] User created in Supabase:', data);
       return new Response('User created successfully', { status: 200 });
     } catch (error) {
-      console.error('Error creating user in Supabase:', error);
+      console.error('[Webhook] Error creating user in Supabase:', error);
       return new Response('Error creating user', { status: 500 });
     }
   }

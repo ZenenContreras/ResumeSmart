@@ -32,7 +32,7 @@ export async function GET() {
 
     // Si el usuario no existe, crearlo con plan free
     if (error && error.code === 'PGRST116') {
-      console.log('User not found, creating with free plan:', userId);
+      console.log('[API /user/plan] User not found by ID, checking email:', userId);
 
       // Get user email from Clerk
       const clerk = await clerkClient();
@@ -40,30 +40,50 @@ export async function GET() {
       const userEmail = clerkUser.emailAddresses[0]?.emailAddress;
 
       if (!userEmail) {
-        console.error('No email found for user:', userId);
+        console.error('[API /user/plan] No email found for user:', userId);
         return NextResponse.json({ error: 'User email not found' }, { status: 400 });
       }
 
-      console.log('[API /user/plan] Creating user with email:', userEmail);
+      console.log('[API /user/plan] Email from Clerk:', userEmail);
 
-      const { data: newUser, error: createError } = await supabaseAdmin
+      // First, check if user exists by email
+      const { data: existingUserByEmail, error: emailCheckError } = await supabaseAdmin
         .from('users')
-        .insert({
-          id: userId,
-          email: userEmail,
-          plan: 'free',
-          credits_remaining: 1,
-          credits_total: 1,
-        })
-        .select('plan, purchased_at, credits_remaining, credits_total, expires_at')
+        .select('id, plan, purchased_at, credits_remaining, credits_total, expires_at')
+        .eq('email', userEmail)
         .single();
 
-      if (createError) {
-        console.error('Error creating user:', createError);
-        return NextResponse.json({ error: 'Failed to create user' }, { status: 500 });
-      }
+      if (existingUserByEmail && !emailCheckError) {
+        // User exists with this email but different ID
+        console.log('[API /user/plan] Found existing user with email, returning their data');
+        console.log('[API /user/plan] Existing ID:', existingUserByEmail.id, 'New ID:', userId);
 
-      user = newUser;
+        // Return the existing user data - don't update the ID to avoid breaking foreign keys
+        user = existingUserByEmail;
+      } else {
+        // Email doesn't exist, create new user
+        console.log('[API /user/plan] Creating new user with email:', userEmail);
+
+        const { data: newUser, error: createError } = await supabaseAdmin
+          .from('users')
+          .insert({
+            id: userId,
+            email: userEmail,
+            plan: 'free',
+            credits_remaining: 1,
+            credits_total: 1,
+          })
+          .select('plan, purchased_at, credits_remaining, credits_total, expires_at')
+          .single();
+
+        if (createError) {
+          console.error('[API /user/plan] Error creating user:', createError);
+          return NextResponse.json({ error: 'Failed to create user', details: createError.message }, { status: 500 });
+        }
+
+        console.log('[API /user/plan] User created successfully');
+        user = newUser;
+      }
     } else if (error) {
       console.error('Error fetching user plan:', error);
       return NextResponse.json({ error: 'Database error' }, { status: 500 });
