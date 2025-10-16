@@ -38,6 +38,29 @@ export default function SelectTemplatePage() {
           </p>
         </div>
 
+        {/* Continue Button */}
+        <div className="pb-10 z-20">
+          <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-xl border border-gray-200 p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs text-gray-600 mb-0.5">Selected Template</p>
+                <p className="text-lg font-bold text-gray-900">
+                  {AVAILABLE_TEMPLATES.find((t) => t.id === selectedTemplate)?.name}
+                </p>
+              </div>
+              <button
+                onClick={handleContinue}
+                className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all shadow-md hover:shadow-lg flex items-center gap-2"
+              >
+                Start Editing
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
         {/* Templates Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {AVAILABLE_TEMPLATES.map((template) => (
@@ -109,28 +132,7 @@ export default function SelectTemplatePage() {
           ))}
         </div>
 
-        {/* Continue Button */}
-        <div className="sticky bottom-6 z-20">
-          <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-xl border border-gray-200 p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs text-gray-600 mb-0.5">Selected Template</p>
-                <p className="text-lg font-bold text-gray-900">
-                  {AVAILABLE_TEMPLATES.find((t) => t.id === selectedTemplate)?.name}
-                </p>
-              </div>
-              <button
-                onClick={handleContinue}
-                className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all shadow-md hover:shadow-lg flex items-center gap-2"
-              >
-                Start Editing
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
+
 
         {/* Info Box */}
         <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-100">
