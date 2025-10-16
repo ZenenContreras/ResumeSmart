@@ -32,7 +32,7 @@ export function useResumes(type?: 'targeted' | 'general') {
       if (type) params.append('type', type);
       params.append('limit', '10');
 
-      const response = await fetch(`/api/resumes/list?${params.toString()}`, {
+      const response = await fetch(`/api/resume/list?${params.toString()}`, {
         cache: 'no-store',
       });
 
