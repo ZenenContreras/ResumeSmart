@@ -77,7 +77,7 @@ const Header = () => {
 
         {/* Clerk Authentication */}
         <SignedOut>
-          <SignInButton mode="modal">
+          <SignInButton >
             <button className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white">
               Sign In
             </button>

@@ -91,7 +91,7 @@ const SideBar = () => {
       <aside className="hidden lg:fixed lg:inset-y-0 lg:flex lg:flex-col lg:pt-16 lg:z-50 group lg:items-center lg:justify-center">
         {/* Sidebar - Expands on hover */}
         <div className="w-20 group-hover:w-64 flex flex-col flex-grow bg-white border-r border-gray-200 pt-5 pb-4 overflow-y-auto transition-all duration-300 ease-in-out shadow-lg">
-          <div className="flex flex-col flex-grow px-2 group-hover:px-4">
+          <div className="flex flex-col flex-grow px-2 group-hover:px-4 justify-center ">
             {/* Navigation - Icons with expandable labels */}
             <nav className="flex-1 space-y-2">
               {navigation.map((item) => {
@@ -129,19 +129,19 @@ const SideBar = () => {
                   <>
                     {/* Plan Badge */}
                     <div className={`flex items-center p-3 bg-gradient-to-r ${getPlanBadgeColor()} rounded-lg border overflow-hidden`}>
-                      <svg className="w-5 h-5 text-gray-700 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className={`w-5 h-5  flex-shrink-0 ${userPlan === 'Pro' && 'text-blue-600'} ${userPlan === 'Ultimate' && 'text-purple-600'}`} fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
                       </svg>
                       <div className="ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 min-w-0 flex-1">
                         <p className="text-xs text-gray-600 whitespace-nowrap">Current Plan</p>
-                        <p className="text-sm font-bold text-gray-900 whitespace-nowrap">{userPlan}</p>
+                        <p className={`text-sm font-bold whitespace-nowrap text-gray-600 ${userPlan === 'Ultimate' && 'text-purple-600'}`}>{userPlan}</p>
                       </div>
                       {planType !== 'ultimate' && (
                         <Link
                           href="/dashboard/upgrade"
                           className="ml-2 text-xs font-semibold text-blue-600 hover:text-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap"
                         >
-                          {planType === 'free' || 'pro' ? 'Upgrade' : 'Ultimate'}
+                          {planType === 'free' || 'Pro' ? 'Upgrade' : 'Ultimate'}
                         </Link>
                       )}
                     </div>
