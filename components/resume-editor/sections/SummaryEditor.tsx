@@ -36,13 +36,18 @@ export function SummaryEditor({ summary, onChange }: SummaryEditorProps) {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold text-gray-900">Professional Summary</h2>
-        <button
-          className="flex items-center gap-2 px-3 py-1.5 text-sm text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-          title="AI suggestions coming soon"
-        >
-          <Sparkles className="h-4 w-4" />
-          AI Enhance
-        </button>
+<button
+                  onClick={() => {
+                    // TODO: Implement AI enhancement
+                    console.log('Enhance with AI clicked for summary');
+                  }}
+                  className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-lg transition-all shadow-sm hover:shadow-md"
+                >
+                  <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                  Enhance with AI
+                </button>
       </div>
 
       <div>

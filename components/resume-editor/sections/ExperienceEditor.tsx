@@ -195,13 +195,27 @@ function SortableExperienceItem({
               <label className="block text-sm font-medium text-gray-700">
                 Key Responsibilities & Achievements *
               </label>
-              <button
-                onClick={addResponsibility}
-                className="flex items-center gap-1 px-2 py-1 text-sm text-blue-600 hover:bg-blue-50 rounded transition-colors"
-              >
-                <Plus className="h-3 w-3" />
-                Add
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    // TODO: Implement AI enhancement
+                    console.log('Enhance with AI clicked for experience', experience.id);
+                  }}
+                  className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-lg transition-all shadow-sm hover:shadow-md"
+                >
+                  <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                  Enhance with AI
+                </button>
+                <button
+                  onClick={addResponsibility}
+                  className="flex items-center gap-1 px-2 py-1 text-sm text-blue-600 hover:bg-blue-50 rounded transition-colors"
+                >
+                  <Plus className="h-3 w-3" />
+                  Add
+                </button>
+              </div>
             </div>
             <div className="space-y-2">
               {experience.responsibilities.map((resp, respIndex) => (

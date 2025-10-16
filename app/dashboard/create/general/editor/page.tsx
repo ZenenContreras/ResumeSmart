@@ -20,19 +20,18 @@ export default function GeneralEditorPage() {
   // Initialize with empty resume data
   const [resumeData, setResumeData] = useState<ResumeData>({
     personalInfo: {
-      name: '',
-      email: '',
-      phone: '',
-      location: '',
+      name: 'John Doe',
+      email: 'Jhondoe@gmail.com',
+      phone: '(123)456789',
+      location: 'Location',
       linkedin: '',
       website: '',
     },
-    summary: '',
+    summary: 'Experienced {Your Profession} with {X} years of expertise in {key skill area}, {key skill area}, and {key skill area}. Proven track record of {major achievement type} and {major achievement type}, resulting in measurable impact across diverse industries. Strong background in {core competency} with demonstrated ability to {key capability} and {key capability}. Skilled at {soft skill}, {soft skill}, and {soft skill}, consistently delivering results in fast-paced environments.',
     experience: [],
     education: [],
     skills: {
       'Technical Skills': [],
-      'Tools & Technologies': [],
       'Soft Skills' :[]
     },
     certifications: [],
