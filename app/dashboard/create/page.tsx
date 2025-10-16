@@ -10,11 +10,11 @@ export default function CreateResumePage() {
 
   const handleModeSelection = (mode: 'targeted' | 'general') => {
     setSelectedMode(mode);
-    // Targeted mode goes to AI input page, general goes to template selection
+    // Different flows for each mode
     if (mode === 'targeted') {
       router.push('/dashboard/create/targeted/input');
     } else {
-      router.push(`/dashboard/create/select-template?mode=${mode}`);
+      router.push('/dashboard/create/general/select-template');
     }
   };
 

@@ -124,7 +124,7 @@ function SuccessPageContent() {
             href="/dashboard/create"
             className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition font-semibold text-lg"
           >
-            Create Your First Resume
+            Create Your Resume
             <ArrowRight className="w-5 h-5" />
           </Link>
           <Link

@@ -4,12 +4,20 @@ import { WebhookEvent } from '@clerk/nextjs/server';
 import { supabaseAdmin } from '@/lib/supabase/client';
 
 export async function POST(req: Request) {
+  console.log('[Clerk Webhook] 🔔 Webhook request received');
+  console.log('[Clerk Webhook] Timestamp:', new Date().toISOString());
+
   // Get the Webhook secret from environment
   const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
-    throw new Error('Please add CLERK_WEBHOOK_SECRET to .env.local');
+    console.error('[Clerk Webhook] ❌ CLERK_WEBHOOK_SECRET not configured!');
+    return new Response('Error: Webhook secret not configured', {
+      status: 500,
+    });
   }
+
+  console.log('[Clerk Webhook] ✅ Webhook secret found');
 
   // Get the headers
   const headerPayload = await headers();
@@ -17,8 +25,15 @@ export async function POST(req: Request) {
   const svix_timestamp = headerPayload.get('svix-timestamp');
   const svix_signature = headerPayload.get('svix-signature');
 
+  console.log('[Clerk Webhook] Headers:', {
+    svix_id: svix_id ? '✅' : '❌',
+    svix_timestamp: svix_timestamp ? '✅' : '❌',
+    svix_signature: svix_signature ? '✅' : '❌',
+  });
+
   // If there are no headers, error out
   if (!svix_id || !svix_timestamp || !svix_signature) {
+    console.error('[Clerk Webhook] ❌ Missing svix headers');
     return new Response('Error: Missing svix headers', {
       status: 400,
     });
@@ -35,13 +50,15 @@ export async function POST(req: Request) {
 
   // Verify the webhook signature
   try {
+    console.log('[Clerk Webhook] 🔐 Verifying signature...');
     evt = wh.verify(body, {
       'svix-id': svix_id,
       'svix-timestamp': svix_timestamp,
       'svix-signature': svix_signature,
     }) as WebhookEvent;
-  } catch (err) {
-    console.error('Error verifying webhook:', err);
+    console.log('[Clerk Webhook] ✅ Signature verified successfully');
+  } catch (err: any) {
+    console.error('[Clerk Webhook] ❌ Signature verification failed:', err.message);
     return new Response('Error: Verification failed', {
       status: 400,
     });
@@ -49,7 +66,7 @@ export async function POST(req: Request) {
 
   // Handle the webhook
   const eventType = evt.type;
-  console.log(`Webhook event type: ${eventType}`);
+  console.log(`[Clerk Webhook] 📨 Event type: ${eventType}`);
 
   if (eventType === 'user.created') {
     const { id, email_addresses, first_name, last_name } = evt.data;
@@ -134,19 +151,40 @@ export async function POST(req: Request) {
   if (eventType === 'user.deleted') {
     const { id } = evt.data;
 
+    console.log('[Webhook] 🗑️  Deleting user:', id);
+
     try {
+      // Primero verificar si el usuario existe
+      const { data: existingUser } = await supabaseAdmin
+        .from('users')
+        .select('id, email')
+        .eq('id', id)
+        .single();
+
+      if (!existingUser) {
+        console.log('[Webhook] ⚠️  User not found in Supabase, skipping delete');
+        return new Response('User not found (already deleted)', { status: 200 });
+      }
+
+      console.log('[Webhook] Found user to delete:', existingUser.email);
+
+      // Eliminar usuario (CASCADE eliminará resumes, cover_letters, etc.)
       const { error } = await supabaseAdmin
         .from('users')
         .delete()
         .eq('id', id);
 
-      if (error) throw error;
+      if (error) {
+        console.error('[Webhook] ❌ Error deleting user:', error);
+        throw error;
+      }
 
-      console.log('User deleted from Supabase:', id);
+      console.log('[Webhook] ✅ User deleted from Supabase:', id);
+      console.log('[Webhook] ✅ All related data deleted (CASCADE)');
       return new Response('User deleted successfully', { status: 200 });
-    } catch (error) {
-      console.error('Error deleting user from Supabase:', error);
-      return new Response('Error deleting user', { status: 500 });
+    } catch (error: any) {
+      console.error('[Webhook] ❌ Error deleting user from Supabase:', error);
+      return new Response('Error deleting user: ' + error.message, { status: 500 });
     }
   }
 

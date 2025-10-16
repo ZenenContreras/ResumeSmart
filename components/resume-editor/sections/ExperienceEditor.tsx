@@ -186,35 +186,8 @@ function SortableExperienceItem({
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
                   placeholder="Dec 2023"
                 />
-                <label className="flex items-center gap-1 text-sm whitespace-nowrap">
-                  <input
-                    type="checkbox"
-                    checked={experience.current || false}
-                    onChange={(e) => {
-                      handleFieldChange('current', e.target.checked);
-                      if (e.target.checked) {
-                        handleFieldChange('endDate', '');
-                      }
-                    }}
-                    className="rounded"
-                  />
-                  Current
-                </label>
               </div>
             </div>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Description (Optional)
-            </label>
-            <textarea
-              value={experience.description || ''}
-              onChange={(e) => handleFieldChange('description', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-              placeholder="Brief overview of your role and key achievements..."
-              rows={2}
-            />
           </div>
 
           <div>
