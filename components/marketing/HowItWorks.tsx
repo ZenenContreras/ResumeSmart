@@ -106,7 +106,7 @@ const HowItWorks = () => {
   ];
 
   return (
-    <div id="how-it-works" className="w-full min-h-screen flex flex-col items-center justify-center py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div id="how-it-works" className="w-full min-h-screen flex flex-col items-center justify-center py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br  from-blue-50 to-purple-50">
       <div className="w-full max-w-7xl mx-auto flex flex-col items-center text-center">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-2 sm:mb-4 tracking-tighter">
           <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">4 </span>Steps to Your <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Perfect</span> Resume
@@ -156,7 +156,7 @@ const HowItWorks = () => {
 
         <div className="mt-8 sm:mt-12 md:mt-16 lg:mt-20">
               <Link
-                href="/create-resume"
+                href="/dashboard/create"
                 className="group inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-bold text-white transition-all duration-300 hover:scale-101 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/40 focus:outline-none focus:ring-4 focus:ring-blue-600/50 w-full sm:w-auto max-w-xs"
               >
                 Try Now Free

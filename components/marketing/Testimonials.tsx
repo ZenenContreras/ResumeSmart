@@ -34,7 +34,7 @@ function Testimonials() {
   ]
 
   return (
-    <section className="py-8 sm:py-12 md:py-16  relative flex w-full flex-row items-center justify-center overflow-hidden bg-gray-50">
+    <section className="py-8 sm:py-12 md:py-16  relative flex w-full flex-row items-center justify-center overflow-hidden bg-gradient-to-br  from-blue-50 to-purple-50">
       <Marquee pauseOnHover className="[--duration:20s]">
         {reviews.map((review) => (
           <ReviewCard key={review.username} {...review} />
