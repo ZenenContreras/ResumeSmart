@@ -92,14 +92,45 @@ export async function POST(req: Request) {
         .single();
 
       if (createError) {
-        console.error('Error creating user:', createError);
-        return NextResponse.json(
-          { error: 'Failed to create user account' },
-          { status: 500 }
-        );
+        console.error('❌ Error creating user:', createError);
+
+        // Si ya existe por duplicate key, intentar obtenerlo de nuevo
+        if (createError.code === '23505') {
+          console.log('🔄 User already exists, fetching again...');
+          const { data: retryUser, error: retryError } = await supabaseAdmin
+            .from('users')
+            .select('credits_remaining, plan')
+            .eq('id', userId)
+            .single();
+
+          if (!retryError && retryUser) {
+            user = retryUser;
+            console.log('✅ User fetched successfully on retry');
+          } else {
+            return NextResponse.json(
+              {
+                error: 'Failed to create or fetch user account',
+                details: 'User sync issue. Please contact support.',
+                code: createError.code
+              },
+              { status: 500 }
+            );
+          }
+        } else {
+          return NextResponse.json(
+            {
+              error: 'Failed to create user account',
+              details: createError.message,
+              code: createError.code
+            },
+            { status: 500 }
+          );
+        }
       }
-      user = newUser;
-      console.log('✅ New user created with 1 credit');
+      if (newUser) {
+        user = newUser;
+        console.log('✅ New user created with 1 credit');
+      }
     } else if (userError) {
       console.error('Error fetching user:', userError);
       return NextResponse.json({ error: 'Database error' }, { status: 500 });
