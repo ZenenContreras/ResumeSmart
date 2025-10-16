@@ -204,9 +204,9 @@ NEXT_PUBLIC_APP_URL=https://krysta-unspasmodic-natosha.ngrok-free.dev
 
 1. **Actualizar variables de entorno en tu hosting:**
    ```env
-   STRIPE_SECRET_KEY=sk_live_xxxxx  # ⚠️ Usa LIVE key
-   STRIPE_WEBHOOK_SECRET=whsec_xxxxx  # Nuevo secret de producción
-   NEXT_PUBLIC_APP_URL=https://resumesmart.com  # Tu dominio real
+   STRIPE_SECRET_KEY=xxxxxx # ⚠️ Usa LIVE key
+   STRIPE_WEBHOOK_SECRET=xxxxxxx # Nuevo secret de producción
+   NEXT_PUBLIC_APP_URL=https://resumesmart.io  # Tu dominio real
    ```
 
 2. **Crear nuevo webhook endpoint en Stripe:**
