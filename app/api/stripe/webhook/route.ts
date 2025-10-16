@@ -46,23 +46,28 @@ export async function POST(req: NextRequest) {
           : null;
 
         if (!userId || !plan) {
-          console.error('Missing metadata in session:', session.metadata);
+          console.error('[Stripe Webhook] Missing metadata in session:', session.metadata);
           return NextResponse.json({ received: true });
         }
 
-        console.log(`💳 Processing payment for user ${userId}, plan: ${plan}`);
+        console.log(`[Stripe Webhook] 💳 Processing payment for user ${userId}, plan: ${plan}`);
+        console.log(`[Stripe Webhook] Session ID: ${session.id}`);
+        console.log(`[Stripe Webhook] Customer ID: ${session.customer}`);
+        console.log(`[Stripe Webhook] Amount paid: $${(session.amount_total || 0) / 100}`);
 
         // Get current user data to check for upgrades
         const { data: currentUser, error: fetchError } = await supabaseAdmin
           .from('users')
-          .select('plan, credits_remaining')
+          .select('plan, credits_remaining, email, name')
           .eq('id', userId)
           .single();
 
         if (fetchError) {
-          console.error('Error fetching user:', fetchError);
+          console.error('[Stripe Webhook] Error fetching user:', fetchError);
           throw fetchError;
         }
+
+        console.log(`[Stripe Webhook] Current user plan: ${currentUser?.plan}`);
 
         // Determine credits to add based on upgrade path
         let creditsToAdd = credits;
@@ -85,25 +90,56 @@ export async function POST(req: NextRequest) {
           ? new Date(purchasedAt.getTime() + (90 * 24 * 60 * 60 * 1000)) // 90 days
           : null; // PRO never expires
 
+        // Get customer details from Stripe if available
+        let customerName = currentUser?.name;
+        if (session.customer && typeof session.customer === 'string') {
+          try {
+            const customer = await stripe.customers.retrieve(session.customer);
+            if (customer && !customer.deleted) {
+              // Use Stripe customer name if available and current name is not set
+              if (customer.name && !customerName) {
+                customerName = customer.name;
+              }
+            }
+          } catch (err) {
+            console.error('[Stripe Webhook] Error retrieving customer:', err);
+          }
+        }
+
+        // Prepare update object
+        const updateData: any = {
+          plan,
+          credits_remaining: creditsToAdd,
+          credits_total: creditsToAdd,
+          purchased_at: purchasedAt.toISOString(),
+          expires_at: expiresAt?.toISOString() || null,
+          stripe_customer_id: session.customer as string,
+        };
+
+        // Add name if we have it
+        if (customerName) {
+          updateData.name = customerName;
+        }
+
+        console.log('[Stripe Webhook] Updating user with data:', updateData);
+
         // Update user in database
         const { error } = await supabaseAdmin
           .from('users')
-          .update({
-            plan,
-            credits_remaining: creditsToAdd,
-            credits_total: creditsToAdd,
-            purchased_at: purchasedAt.toISOString(),
-            expires_at: expiresAt?.toISOString() || null,
-            stripe_customer_id: session.customer as string,
-          })
+          .update(updateData)
           .eq('id', userId);
 
         if (error) {
-          console.error('Error updating user:', error);
+          console.error('[Stripe Webhook] Error updating user:', error);
           throw error;
         }
 
-        console.log(`✅ User ${userId} upgraded from ${currentPlan} to ${plan} with ${creditsToAdd} credits`);
+        console.log(`[Stripe Webhook] ✅ User ${userId} upgraded from ${currentPlan} to ${plan} with ${creditsToAdd} credits`);
+        console.log(`[Stripe Webhook] ✅ Stripe Customer ID: ${session.customer}`);
+        console.log(`[Stripe Webhook] ✅ Purchased at: ${purchasedAt.toISOString()}`);
+        if (expiresAt) {
+          console.log(`[Stripe Webhook] ✅ Expires at: ${expiresAt.toISOString()}`);
+        }
         break;
       }
 
