@@ -31,7 +31,7 @@ export default function ATSScoreCard({ resumeId, jobDescription, onCalculate }: 
     setError(null);
 
     try {
-      const response = await fetch('/api/ats/score', {
+      const response = await fetch('/api/ai/score', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ resumeId, jobDescription }),

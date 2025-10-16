@@ -95,7 +95,7 @@ export async function PUT(
 
       try {
         const atsScoreResponse = await fetch(
-          `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/ats/score`,
+          `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/ai/score`,
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

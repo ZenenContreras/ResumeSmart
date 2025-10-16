@@ -123,8 +123,8 @@ export default function CreateResumeStepsPage() {
       }
 
       const endpoint = mode === 'targeted'
-        ? '/api/resumes/generate'
-        : '/api/resumes/generate-general';
+        ? '/api/resume/generate'
+        : '/api/resume/generate-general';
 
       const response = await fetch(endpoint, {
         method: 'POST',

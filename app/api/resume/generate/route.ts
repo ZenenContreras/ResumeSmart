@@ -10,16 +10,26 @@ const openai = new OpenAI({
 });
 
 // Schema de validación
-const profileSchema = z.object({
-  title: z.string().optional(),
-  industries: z.array(z.string()).optional(),
-  experienceLevel: z.enum(['entry', 'mid', 'senior', 'executive']).optional(),
-  objective: z.string().optional(),
+const generateResumeSchema = z.object({
+  jobDescription: z.string().min(100, 'Job description must be at least 100 characters'),
+  experience: z.union([
+    z.string().min(50, 'Experience must be at least 50 characters'),
+    z.any(), // Para File (PDF/DOCX)
+  ]),
+  template: z.string().default('modern').optional(),
+  personalInfo: z.object({
+    name: z.string().optional(),
+    email: z.string().email().optional(),
+    phone: z.string().optional(),
+    location: z.string().optional(),
+    linkedin: z.string().optional(),
+    website: z.string().optional(),
+  }).optional(),
 });
 
-// POST - Generar resume general (sin job específico)
+// POST - Generar resume optimizado para job específico
 export async function POST(req: Request) {
-  console.log('🚀 Starting general resume generation...');
+  console.log('🚀 Starting targeted resume generation...');
 
   try {
     const { userId } = await auth();
@@ -30,20 +40,24 @@ export async function POST(req: Request) {
 
     // 1. Parsear y validar input
     const formData = await req.formData();
+    const jobDescription = formData.get('jobDescription') as string;
     const experienceInput = formData.get('experience');
     const template = (formData.get('template') as string) || 'modern';
-    const profileStr = formData.get('profile') as string;
     const personalInfoStr = formData.get('personalInfo') as string;
 
-    let profile;
     let personalInfo;
-
     try {
-      profile = profileStr ? JSON.parse(profileStr) : {};
       personalInfo = personalInfoStr ? JSON.parse(personalInfoStr) : undefined;
     } catch {
-      profile = {};
       personalInfo = undefined;
+    }
+
+    // Validar campos básicos
+    if (!jobDescription || jobDescription.length < 100) {
+      return NextResponse.json(
+        { error: 'Job description must be at least 100 characters' },
+        { status: 400 }
+      );
     }
 
     // 2. Verificar créditos (crear usuario si no existe)
@@ -112,8 +126,8 @@ export async function POST(req: Request) {
             { status: 500 }
           );
         }
-      }
-      if (newUser) {
+      } else {
+        // Solo asignar si createError es null
         user = newUser;
         console.log('✅ New user created with 1 credit');
       }
@@ -122,6 +136,15 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Database error' }, { status: 500 });
     } else {
       user = existingUser;
+    }
+
+    // Verificación de seguridad: asegurar que user está definido
+    if (!user) {
+      console.error('❌ User is undefined after all checks');
+      return NextResponse.json(
+        { error: 'Failed to verify user account' },
+        { status: 500 }
+      );
     }
 
     if (user.credits_remaining < 1) {
@@ -158,26 +181,25 @@ export async function POST(req: Request) {
 
     console.log(`✅ Experience parsed: ${experienceText.length} characters`);
 
-    // 4. Generar CV general con OpenAI
-    console.log('🤖 Calling OpenAI to generate versatile resume...');
+    // 4. Generar CV optimizado con OpenAI
+    console.log('🤖 Calling OpenAI to generate optimized resume...');
     const startTime = Date.now();
 
-    const systemPrompt = `You are an expert resume writer specializing in creating versatile, professional resumes that work across multiple roles and industries. Your task is to create a general-purpose resume that highlights transferable skills and achievements.
+    const systemPrompt = `You are an expert resume writer and career coach with deep knowledge of ATS (Applicant Tracking Systems) and hiring best practices. Your task is to create a highly optimized, ATS-friendly resume tailored to a specific job description.
 
-Key principles for general resumes:
-- Focus on transferable skills that apply across industries
-- Quantify achievements with metrics to show impact
-- Use strong action verbs that demonstrate leadership and results
-- Highlight adaptability and versatility
+Key principles:
+- Use keywords and phrases from the job description naturally throughout the resume
+- Quantify achievements with metrics wherever possible
+- Use strong action verbs (Led, Developed, Increased, etc.)
+- Structure content to be ATS-friendly (no tables, no columns, simple formatting)
+- Highlight relevant skills and experiences that match the job requirements
 - Keep language professional and concise
-- Structure content to be ATS-friendly (no tables, clear sections)
-- Emphasize achievements that translate to different contexts
-- Show progression and growth in career
+- Focus on achievements and impact, not just responsibilities
 
-Return the resume as a structured JSON object with this format:
+Return the resume as a structured JSON object with the following format:
 {
   "personalInfo": { "name": "...", "email": "...", "phone": "...", "location": "...", "linkedin": "...", "website": "..." },
-  "summary": "A compelling 3-4 sentence summary emphasizing versatility and key strengths",
+  "summary": "A compelling 3-4 sentence summary highlighting key qualifications",
   "experience": [
     {
       "title": "Job Title",
@@ -186,8 +208,8 @@ Return the resume as a structured JSON object with this format:
       "startDate": "MM/YYYY",
       "endDate": "MM/YYYY or Present",
       "responsibilities": [
-        "Achievement-focused bullet with transferable skills and metrics",
-        "Another quantified achievement showing impact"
+        "Achievement-focused bullet point with metrics",
+        "Another quantified achievement"
       ]
     }
   ],
@@ -202,7 +224,6 @@ Return the resume as a structured JSON object with this format:
   ],
   "skills": {
     "technical": ["Skill 1", "Skill 2"],
-    "leadership": ["Leadership skill 1", "Leadership skill 2"],
     "languages": ["Language 1", "Language 2"],
     "tools": ["Tool 1", "Tool 2"]
   },
@@ -215,28 +236,17 @@ Return the resume as a structured JSON object with this format:
   ] (optional)
 }`;
 
-    let userPrompt = `Create a professional, versatile resume that can be used for multiple opportunities. Focus on transferable skills, quantified achievements, and professional polish.
+    const userPrompt = `Create an optimized resume for this job posting. Use the candidate's experience and tailor it specifically to match the job requirements.
+
+JOB DESCRIPTION:
+${jobDescription}
 
 CANDIDATE EXPERIENCE:
 ${experienceText}
 
-${personalInfo ? `PERSONAL INFO:\n${JSON.stringify(personalInfo, null, 2)}` : ''}`;
+${personalInfo ? `PERSONAL INFO:\n${JSON.stringify(personalInfo, null, 2)}` : ''}
 
-    // Agregar contexto del perfil si existe
-    if (profile.title) {
-      userPrompt += `\n\nTarget Role/Industry: ${profile.title}`;
-    }
-    if (profile.industries && profile.industries.length > 0) {
-      userPrompt += `\nIndustries of Interest: ${profile.industries.join(', ')}`;
-    }
-    if (profile.experienceLevel) {
-      userPrompt += `\nExperience Level: ${profile.experienceLevel}`;
-    }
-    if (profile.objective) {
-      userPrompt += `\nCareer Objective: ${profile.objective}`;
-    }
-
-    userPrompt += `\n\nGenerate a complete, professional resume that emphasizes versatility and can be used for various opportunities. Make sure achievements are quantified and skills are organized clearly.`;
+Generate a complete, ATS-optimized resume that highlights the most relevant experience and skills for this specific job. Make sure to incorporate keywords from the job description naturally throughout the resume.`;
 
     try {
       const completion = await openai.chat.completions.create({
@@ -257,24 +267,41 @@ ${personalInfo ? `PERSONAL INFO:\n${JSON.stringify(personalInfo, null, 2)}` : ''
       const generationTime = Date.now() - startTime;
       console.log(`✅ Resume generated in ${generationTime}ms`);
 
-      // 5. Para resume general, asignar un ATS score genérico alto (80-85)
-      // ya que no hay job específico para comparar
-      const genericAtsScore = 82;
+      // 5. Calcular ATS score
+      console.log('📊 Calculating ATS score...');
+      const atsScoreResponse = await fetch(
+        `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/ai/score`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            resumeContent: JSON.stringify(resumeContent),
+            jobDescription,
+          }),
+        }
+      );
+
+      const atsScoreData = await atsScoreResponse.json();
+      const atsScore = atsScoreData.score || 0;
+      const keywordsMatched = atsScoreData.keywordsMatched || 0;
+      const keywordsTotal = atsScoreData.keywordsTotal || 0;
+
+      console.log(`✅ ATS Score: ${atsScore}/100`);
 
       // 6. Guardar en base de datos
       console.log('💾 Saving resume to database...');
-      const resumeTitle = `${resumeContent.personalInfo?.name || 'My Resume'} - General - ${new Date().toLocaleDateString()}`;
+      const resumeTitle = `${resumeContent.personalInfo?.name || 'My Resume'} - ${new Date().toLocaleDateString()}`;
 
       const { data: savedResume, error: saveError } = await supabaseAdmin
         .from('resumes')
         .insert({
           user_id: userId,
           title: resumeTitle,
-          type: 'general',
-          job_description: null, // No job description for general resumes
-          ats_score: genericAtsScore,
-          keywords_matched: null,
-          keywords_total: null,
+          type: 'targeted',
+          job_description: jobDescription,
+          ats_score: atsScore,
+          keywords_matched: keywordsMatched,
+          keywords_total: keywordsTotal,
           template_id: template,
           content: resumeContent,
           created_at: new Date().toISOString(),
@@ -313,23 +340,34 @@ ${personalInfo ? `PERSONAL INFO:\n${JSON.stringify(personalInfo, null, 2)}` : ''
       }
 
       const totalTime = Date.now() - startTime;
-      console.log(`🎉 General resume generation completed in ${totalTime}ms`);
+      console.log(`🎉 Resume generation completed in ${totalTime}ms`);
 
       // 8. Retornar resultado
       return NextResponse.json({
         success: true,
         resumeId: savedResume.id,
         content: resumeContent,
-        atsScore: genericAtsScore,
+        atsScore,
+        keywordsMatched,
+        keywordsTotal,
+        suggestions: atsScoreData.suggestions || [],
+        missingKeywords: atsScoreData.missingKeywords || [],
         creditsRemaining: user.credits_remaining - 1,
         generationTime: totalTime,
       });
     } catch (openaiError: any) {
       console.error('❌ OpenAI error:', openaiError);
+
+      // Retry una vez si timeout
+      if (openaiError.code === 'timeout') {
+        console.log('⏱️ Retrying after timeout...');
+        // Implementar retry logic aquí si es necesario
+      }
+
       throw new Error(`OpenAI generation failed: ${openaiError.message}`);
     }
   } catch (error: any) {
-    console.error('❌ Error generating general resume:', error);
+    console.error('❌ Error generating resume:', error);
     return NextResponse.json(
       {
         error: 'Failed to generate resume',

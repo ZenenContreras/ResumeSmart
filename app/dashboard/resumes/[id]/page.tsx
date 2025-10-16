@@ -71,7 +71,7 @@ export default function ResumeEditorPage() {
 
   const fetchResume = async (id: string) => {
     try {
-      const response = await fetch(`/api/resumes/${id}`);
+      const response = await fetch(`/api/resume/${id}`);
       if (!response.ok) {
         throw new Error('Failed to fetch resume');
       }
@@ -104,7 +104,7 @@ export default function ResumeEditorPage() {
 
     setSaving(true);
     try {
-      const response = await fetch(`/api/resumes/${resume.id}`, {
+      const response = await fetch(`/api/resume/${resume.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

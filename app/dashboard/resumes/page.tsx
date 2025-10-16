@@ -31,7 +31,7 @@ export default function ResumesPage() {
   const fetchResumes = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/resumes/list');
+      const response = await fetch('/api/resume/list');
 
       if (!response.ok) {
         throw new Error('Failed to fetch resumes');
@@ -53,7 +53,7 @@ export default function ResumesPage() {
 
     try {
       setDeleting(id);
-      const response = await fetch(`/api/resumes/${id}`, {
+      const response = await fetch(`/api/resume/${id}`, {
         method: 'DELETE',
       });
 
@@ -73,7 +73,7 @@ export default function ResumesPage() {
 
   const handleExport = async (id: string, title: string) => {
     try {
-      const response = await fetch(`/api/pdf/export?resumeId=${id}`);
+      const response = await fetch(`/api/resume/export?resumeId=${id}`);
 
       if (!response.ok) {
         throw new Error('Failed to export PDF');
