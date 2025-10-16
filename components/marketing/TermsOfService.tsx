@@ -223,8 +223,8 @@ const TermsOfService = () => {
         {/* Introduction */}
         <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-200 p-6 sm:p-8 mb-8 shadow-sm">
           <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-            These Terms of Service ("Terms") govern your access to and use of ResumeSmart's
-            website, services, and applications (collectively, the "Service"). Please read these
+            These Terms of Service  govern your access to and use of ResumeSmart's
+            website, services, and applications. Please read these
             terms carefully before using our platform. By accessing or using the Service, you
             acknowledge that you have read, understood, and agree to be bound by these Terms.
           </p>

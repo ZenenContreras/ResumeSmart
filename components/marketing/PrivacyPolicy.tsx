@@ -175,7 +175,7 @@ const PrivacyPolicy = () => {
         {/* Introduction */}
         <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-200 p-6 sm:p-8 mb-8 shadow-sm">
           <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-            This Privacy Policy explains how ResumeSmart ("we," "us," or "our") collects, uses,
+            This Privacy Policy explains how ResumeSmart collects, uses,
             discloses, and protects your personal information when you use our resume optimization
             platform. By using our service, you agree to the collection and use of information in
             accordance with this policy.
