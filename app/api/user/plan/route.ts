@@ -1,4 +1,4 @@
-import { auth } from '@clerk/nextjs/server';
+import { auth, clerkClient } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabase/client';
 import { PLAN_FEATURES, PLAN_NAMES, PLAN_DESCRIPTIONS, PlanType } from '@/lib/constants/plans';
@@ -9,7 +9,16 @@ export async function GET() {
     const { userId } = await auth();
 
     if (!userId) {
+      console.log('[API /user/plan] No userId found');
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    console.log('[API /user/plan] Fetching plan for user:', userId);
+
+    // Check if Supabase client is configured
+    if (!supabaseAdmin) {
+      console.error('[API /user/plan] Supabase client not configured');
+      return NextResponse.json({ error: 'Database configuration error' }, { status: 500 });
     }
 
     // Obtener plan del usuario
@@ -19,13 +28,29 @@ export async function GET() {
       .eq('id', userId)
       .single();
 
+    console.log('[API /user/plan] Query result:', { user, error });
+
     // Si el usuario no existe, crearlo con plan free
     if (error && error.code === 'PGRST116') {
       console.log('User not found, creating with free plan:', userId);
+
+      // Get user email from Clerk
+      const clerk = await clerkClient();
+      const clerkUser = await clerk.users.getUser(userId);
+      const userEmail = clerkUser.emailAddresses[0]?.emailAddress;
+
+      if (!userEmail) {
+        console.error('No email found for user:', userId);
+        return NextResponse.json({ error: 'User email not found' }, { status: 400 });
+      }
+
+      console.log('[API /user/plan] Creating user with email:', userEmail);
+
       const { data: newUser, error: createError } = await supabaseAdmin
         .from('users')
         .insert({
           id: userId,
+          email: userEmail,
           plan: 'free',
           credits_remaining: 1,
           credits_total: 1,
