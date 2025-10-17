@@ -20,17 +20,17 @@ const HowItWorks = () => {
       titleColor: 'from-blue-600 to-purple-600',
       description: (
         <div className="space-y-3">
-          <p className="text-blue-600 font-bold">
+          <p className="text-gray-700 font-bold">
             Have a specific job in mind?
           </p>
           <p className="text-gray-700 text-sm">
-            Optimize your resume for that <span className="text-purple-600 font-bold">position</span>.
+            Optimize your resume for that position.
           </p>
-          <p className="text-blue-600 font-bold mt-3">
+          <p className="text-gray-700 font-bold mt-3">
             Want a general resume?
           </p>
           <p className="text-gray-700 text-sm">
-            Create a <span className="text-green-600 font-bold">versatile professional</span> resume.
+            Create a versatile professional resume.
           </p>
         </div>
       ),
@@ -44,16 +44,16 @@ const HowItWorks = () => {
       description: (
         <div className="space-y-3">
           <p className="text-gray-700 font-medium">
-            Upload your <span className="text-blue-600 font-bold">current resume</span>, paste text, or connect <span className="text-purple-600 font-bold">LinkedIn</span>.
+            Upload your <span className="text-blue-600 font-bold">current resume</span> or paste text.
           </p>
-          <p className="text-green-600 font-bold mt-3">
+          <p className="text-gray-700 font-bold mt-3">
             No work experience? Include:
           </p>
           <ul className="text-gray-700 text-sm space-y-1 ml-2">
-            <li>• <span className="text-blue-600 font-bold">Academic</span> or personal projects</li>
+            <li>• <span className="text-purple-600 font-bold">Academic</span> or personal projects</li>
             <li>• <span className="text-purple-600 font-bold">Internships</span> or volunteering</li>
-            <li>• Courses and <span className="text-green-600 font-bold">certifications</span></li>
-            <li>• <span className="text-blue-600 font-bold">Technical skills</span></li>
+            <li>• Courses and <span className="text-purple-600 font-bold">certifications</span></li>
+            <li>• <span className="text-purple-600 font-bold">Technical skills</span></li>
           </ul>
         </div>
       ),
@@ -66,18 +66,17 @@ const HowItWorks = () => {
       titleColor: 'from-green-600 to-blue-600',
       description: (
         <div className="space-y-3">
-          <p className="text-gray-700 font-medium">
-            In <span className="text-green-600 font-bold">30 seconds</span>, our{' '}
+          <p className="text-gray-700 font-bold">
+            In 30 seconds, our{' '}
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold">
               AI
             </span>:
           </p>
           <ul className="text-gray-700 text-sm space-y-1">
-            <li>• <span className="font-bold">Rewrites</span> bullets with <span className="text-blue-600 font-bold">impact verbs</span></li>
-            <li>• <span className="text-green-600 font-bold">Quantifies</span> achievements when possible</li>
-            <li>• <span className="font-bold">Extracts</span> and adds <span className="text-purple-600 font-bold">relevant keywords</span></li>
-            <li>• <span className="font-bold">Optimizes</span> format to pass <span className="text-blue-600 font-bold">ATS</span></li>
-            <li>• <span className="font-bold">Generates</span> <span className="text-green-600 font-bold">professional summary</span></li>
+            <li>• <span className="text-blue-600 font-bold">Rewrites</span> bullets with <span className=" font-bold">impact verbs</span></li>
+            <li>• <span className="text-blue-600 font-bold">Extracts</span> and adds <span className="font-bold">relevant keywords</span></li>
+            <li>• <span className="text-blue-600 font-bold">Optimizes</span> format to pass <span className=" font-bold">ATS</span></li>
+            <li>• <span className="text-blue-600 font-bold">Generates</span> <span className="font-bold">professional summary</span></li>
           </ul>
         </div>
       ),
@@ -90,13 +89,13 @@ const HowItWorks = () => {
       titleColor: 'from-blue-600 to-green-600',
       description: (
         <div className="space-y-3">
-          <p className="text-blue-600 font-bold">
+          <p className="text-gray-700 font-bold">
             Your resume is ready:
           </p>
           <ul className="text-gray-700 text-sm space-y-1">
             <li>• <span className="text-green-600 font-bold">ATS score</span> + suggestions (if targeted)</li>
-            <li>• Professional <span className="text-purple-600 font-bold">PDF</span> with <span className="text-green-600 font-bold">no paywall</span></li>
-            <li>• <span className="text-blue-600 font-bold">Editable</span> anytime</li>
+            <li>• Professional <span className="text-green-600 font-bold">PDF</span> with <span className="text-green-600 font-bold">no paywall</span></li>
+            <li>• <span className="text-green-600 font-bold">Editable</span> anytime</li>
           </ul>
         </div>
       ),
@@ -143,10 +142,10 @@ const HowItWorks = () => {
                 {step.description}
               </div>
 
-              <div className="aspect-[4/3] bg-gray-100 rounded-lg sm:rounded-xl overflow-hidden shadow-md mt-auto relative">
+              <div className="aspect-[4/3] bg-gray-100 shadow-md mt-auto relative">
                 <img
                   alt={step.altText}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-fill rounded-xl"
                   src={step.imageUrl}
                 />
               </div>
