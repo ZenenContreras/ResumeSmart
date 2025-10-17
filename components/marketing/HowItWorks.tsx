@@ -34,7 +34,7 @@ const HowItWorks = () => {
           </p>
         </div>
       ),
-      imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDJxMn9DVX-WtozIG5dGJSJ30YtPxmYMqQlkSCHNhpAK4582er9Ii-MKhyBBxWqUc2xvCFUaYb7CCiE6IsOi5M_qmVhiNhcmESgBb_J4dJj5zkDCho5deJu_atIZJc2wLW5wPGn4FByMHhTS889V8HC69tjbrKJs8Tto8IXenHzbVEW6q-x5QsmGDzD9dk9qCTGJFPPyH3GYKsAELPDdRQ4deNveSaQxAX_xyXBPyuNl2OOzsF7IIaOVG_L_lf_pO9fBAjOFgmjKik',
+      imageUrl: '/photo/step1.webp',
       altText: 'Mode selector screenshot'
     },
     {
@@ -57,7 +57,7 @@ const HowItWorks = () => {
           </ul>
         </div>
       ),
-      imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBvBnnYi0msJFIbtAicGj7Fwr5Qlra8y9D-PXWqYeCo4YYmLqa99MqzTPzc4rTK6YazHCrqmh1DkAEJrQck5YdHQitQj-P0MjCuDNHM806mpfrZMGAq4rpMeYp7PS6HgmyknSDuwBz6H7JqE7Gt7jD587cizrQfoQVocuCUhOJ0iGenfaPQYs8_NTLyBeZPWTGOg-I74yeMxoM7q5khMjG1Nx8PMS8sV41GTYbCW2VTq6EIgwyJ4PKlIIuMJZuc75EwVhb-BgiY2eo',
+      imageUrl: '/photo/step2.webp',
       altText: 'Upload options screenshot'
     },
     {
@@ -81,7 +81,7 @@ const HowItWorks = () => {
           </ul>
         </div>
       ),
-      imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDD_Zj51k3LrutIrqKC1m_k3mS9Pb_dodQ2a0eykkBtTuoCZtipX4j0EPJz_E_OuM1j-jc6kg4AZ-PQfaO4Y4eVxEip4-_F0rd3wJI0kREHJNYqnn1EwpZ8rRCa2uRCmsBMXSNwOW1R5oP-JY-rtZsoDPxgCmz0iRUx2gHCU7dPY5gIdl2Ym53s_c7Xa-9q4Z51HaXZQk74mZKDbngtuoZo4iwmB9Qgdv1_quUbloDytsPwt4QUEEU0fcWnhTU-w7ueVvm6aGo2x4s',
+      imageUrl: '/photo/step3.webp',
       altText: 'AI processing animation screenshot'
     },
     {
@@ -100,7 +100,7 @@ const HowItWorks = () => {
           </ul>
         </div>
       ),
-      imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDg-oi4Vp5jyxebr6rl1Q8JOjZfqcd-bknjAwfKd-KDQNvwH3gIoCf1ZGgnaPT8M7mQy4dxOlsj8iNpzXUJ3cIB_yR4GyXV0f9arqzaJk-pqaigWxdCfpvj8rWbx7k1mQszDqFe_DCI3wX0ERIgmiz0vwrlF8kT0Pymr4NVgWJIKEgoOukhl8MrjGFH06B-Vz1ODlKQ7tqq2-gbftg9tdZPi_BIr_KtN-ASvZEUFtN7Boe2jj-FEkXNKjOOasL_xXN7YY4hM6dGHHA',
+      imageUrl: '/photo/step4.webp',
       altText: 'Results page with ATS score screenshot'
     }
   ];
@@ -143,7 +143,7 @@ const HowItWorks = () => {
                 {step.description}
               </div>
 
-              <div className="aspect-[16/10] bg-gray-100 rounded-lg sm:rounded-xl overflow-hidden shadow-md mt-auto relative">
+              <div className="aspect-[4/3] bg-gray-100 rounded-lg sm:rounded-xl overflow-hidden shadow-md mt-auto relative">
                 <img
                   alt={step.altText}
                   className="w-full h-full object-cover"
