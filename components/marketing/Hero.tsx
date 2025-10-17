@@ -76,28 +76,10 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right Content - Video */}
+          {/* Right Content - img */}
           <div className="flex justify-center items-center mt-8 lg:mt-0">
-            <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-none aspect-video rounded-lg sm:rounded-xl shadow-xl sm:shadow-2xl shadow-purple-600/20 border border-gray-200 overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-purple-600/5"></div>
-
-              {/* Placeholder for video - replace with actual video iframe */}
-              <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
-                <div className="text-center">
-                  <svg className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-2 sm:mb-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
-                  </svg>
-                  <p className="text-sm sm:text-base text-gray-600">Video Demo</p>
-                </div>
-              </div>
-
-              {/* Play button overlay */}
-              <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <svg className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
-                </svg>
-              </div>
-            </div>
+              <img className="w-full h-full aspect-auto" src='/photo/hero.webp'>
+              </img>
           </div>
         </div>
       </div>
