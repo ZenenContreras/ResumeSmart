@@ -132,7 +132,7 @@ const HowItWorks = () => {
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white flex items-center justify-center font-bold text-base sm:text-xl flex-shrink-0">
                     {step.number}
                   </div>
-                  <h3 className={`text-sm sm:text-base font-bold bg-gradient-to-r ${step.titleColor} bg-clip-text text-transparent`}>
+                  <h3 className={`text-sm sm:text-base font-bold bg-gradient-to-r from-blue-600 to-purple-600 not-only:bg-clip-text text-transparent`}>
                     {step.title}
                   </h3>
                 </div>
