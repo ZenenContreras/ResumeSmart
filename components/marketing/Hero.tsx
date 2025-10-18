@@ -70,7 +70,7 @@ const Hero = () => {
           <div className="relative hidden lg:block w-full overflow-visible min-h-[400px] ">
             <div className="relative max-w-[900px] mx-auto h-[600px]">
               {/* Card izquierda - Preview Resume (base layer) */}
-              <div className="absolute top-0 left-0 bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-2xl rounded-2xl p-8 w-[340px] z-10 ">
+              <div className="absolute top-0 left-0 bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-2xl rounded-2xl p-8 w-[340px] z-10 shadow-purple-100 ">
                 <div className="">
                   <h2 className="font-bold text-2xl text-gray-900 mb-1">John Doe</h2>
                   <p className="text-gray-500 text-sm mb-6">john.doe@example.com | (555) 123-4567</p>
@@ -104,7 +104,7 @@ const Hero = () => {
               </div>
 
               {/* Card derecha - AI Optimization (top layer, overlapping) */}
-              <div className="absolute top-10 left-[300px] bg-white border border-gray-200 shadow-2xl rounded-2xl p-6 w-[340px] z-20 ">
+              <div className="absolute top-10 left-[300px] bg-white border border-gray-200 shadow-2xl rounded-2xl p-6 w-[340px] z-20 shadow-purple-100 ">
                 <h3 className="font-bold text-gray-900 text-lg mb-4"><span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 '>AI </span>Optimization</h3>
 
                 <div className="bg-purple-50 border border-purple-100 rounded-xl p-4 mb-5">
