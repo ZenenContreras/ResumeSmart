@@ -9,7 +9,11 @@ import { ClerkProvider } from '@clerk/nextjs';
 
 export default function Home() {
   return (
-    <ClerkProvider>
+    <ClerkProvider appearance={{
+        theme: 'simple', // o 'dark'
+        // o personalizado:
+
+      }}>
       <div className="relative min-h-screen bg-white overflow-hidden">
         <Header />
         <Hero />

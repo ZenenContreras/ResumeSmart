@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { Waitlist } from '@clerk/nextjs';
 
 const Hero = () => {
   return (
@@ -45,13 +46,13 @@ const Hero = () => {
             </div>
 
             <div className="flex flex-col items-center gap-4 sm:gap-6">
-              <Link
+              <a
                 href="/dashboard/create"
                 className="group inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-bold text-white transition-all duration-300 hover:scale-101 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/40 focus:outline-none focus:ring-4 focus:ring-blue-600/50 w-full sm:w-auto max-w-xs"
               >
                 Create Free
                 <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
-              </Link>
+              </a>
 
               <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-x-4 lg:gap-x-6 gap-y-2">
                 <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-gray-500">
@@ -65,12 +66,6 @@ const Hero = () => {
                     <path clipRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fillRule="evenodd"></path>
                   </svg>
                   <span>No Paywall</span>
-                </div>
-                <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-gray-500">
-                  <svg aria-hidden="true" className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path clipRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fillRule="evenodd"></path>
-                  </svg>
-                  <span>89% Pass ATS</span>
                 </div>
               </div>
             </div>

@@ -10,12 +10,17 @@ export default function SignUpPage() {
       <div className="flex-1 flex items-center justify-center py-24 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md">
           <SignUp
-            appearance={{
-              elements: {
-                rootBox: "mx-auto",
-                card: "shadow-xl",
-              }
-            }}
+              appearance={{
+                theme: 'simple',
+                variables: {
+                  colorPrimary: '#3b82f6',
+                  // ...más opciones
+                },
+                elements: {
+                  rootBox: "mx-auto",
+                  card: "shadow-xl",
+                }
+              }}
           />
         </div>
       </div>
