@@ -7,13 +7,8 @@ import { Waitlist } from '@clerk/nextjs';
 const Hero = () => {
   return (
     <div id="hero" className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      {/* Background animated blobs - adjusted for mobile */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none overflow-hidden">
-        <div className="absolute -top-1/4 -left-1/4 w-3/4 sm:w-1/2 h-1/2 bg-blue-600 rounded-full blur-3xl opacity-30 animate-pulse"></div>
-        <div className="absolute top-1/2 -right-1/4 w-3/4 sm:w-1/2 h-1/2 bg-purple-600 rounded-full blur-3xl opacity-30 animate-pulse delay-1000"></div>
-      </div>
 
-      <div className="flex min-h-screen flex-col justify-center pt-24 sm:pt-24 pb-8 sm:pb-12">
+      <div className="flex min-h-screen flex-col justify-center pt-20 ">
         {/* Main Title */}
         <div className="w-full max-w-4xl mx-auto text-center mb-8 sm:mb-12">
           <h1 className="text-4xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 tracking-tighter leading-tight">
@@ -21,9 +16,9 @@ const Hero = () => {
           </h1>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
           {/* Left Content - Now centered */}
-          <div className="space-y-6 sm:space-y-8 text-center">
+          <div className="space-y-6 sm:space-y-8 text-center md:mt-14">
             <div className="text-base sm:text-lg md:text-xl text-gray-600">
               <div className="flex flex-wrap items-center justify-center gap-2 mb-3 sm:mb-4">
                 <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-extrabold text-lg sm:text-xl md:text-2xl tracking-wide uppercase shadow-md transform -rotate-2">
@@ -71,10 +66,113 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right Content - img */}
-          <div className="flex justify-center items-center mt-8 lg:mt-0">
-              <img className="w-full h-full aspect-auto" src='/photo/hero.webp'>
-              </img>
+          {/* Lado derecho: simulación HTML de la UI con cards flotantes */}
+          <div className="relative hidden lg:block w-full overflow-visible min-h-[400px] ">
+            <div className="relative max-w-[900px] mx-auto h-[600px]">
+              {/* Card izquierda - Preview Resume (base layer) */}
+              <div className="absolute top-0 left-0 bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-2xl rounded-2xl p-8 w-[340px] z-10 ">
+                <div className="">
+                  <h2 className="font-bold text-2xl text-gray-900 mb-1">John Doe</h2>
+                  <p className="text-gray-500 text-sm mb-6">john.doe@example.com | (555) 123-4567</p>
+
+                  <div className="mb-5">
+                    <h3 className="text-gray-900 font-bold text-sm mb-2 border-b border-gray-900 pb-1">Job Title</h3>
+                    <div className="space-y-1">
+                      <div className="h-3 bg-gray-200 rounded w-3/4"></div>
+                      <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-gray-900 font-bold text-sm mb-2">Responsabilities </h3>
+                    <ul className="text-xs text-gray-700 space-y-2">
+                      <li className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-0.5">•</span>
+                        <span>Led & personalized engineering team</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-0.5">•</span>
+                        <span><strong>Reducing</strong> bug rate <strong>35%</strong></span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-gray-400 mt-0.5">•</span>
+                        <span><strong>Accelerating</strong> delivery speed <strong>50%</strong></span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card derecha - AI Optimization (top layer, overlapping) */}
+              <div className="absolute top-10 left-[300px] bg-white border border-gray-200 shadow-2xl rounded-2xl p-6 w-[340px] z-20 ">
+                <h3 className="font-bold text-gray-900 text-lg mb-4"><span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 '>AI </span>Optimization</h3>
+
+                <div className="bg-purple-50 border border-purple-100 rounded-xl p-4 mb-5">
+                  <div className="flex items-start gap-2 mb-2">
+                    <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-gray-900 mb-1">Improvement suggestions</p>
+                      <p className="text-sm text-purple-900">
+                        Consider adding relevant skills to this position
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4 mb-6">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <p className="text-sm font-semibold text-gray-900">Job Title</p>
+                      <div className="flex items-center gap-1">
+                        <div className="h-2 bg-purple-500 rounded-full w-52"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <ul className="space-y-1.5 text-sm text-gray-900 font-semibold">
+                      <li className="flex items-center gap-2">
+                        <span>Bullet Points</span>
+                        <div className="flex-1 ml-2">
+                          <div className="h-2 bg-purple-400 rounded-full w-[90%]]"></div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="border-t border-gray-200 pt-5">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-bold text-gray-900 mb-1">ATS score</p>
+                      <p className="text-xs text-gray-600">Keyword optimization</p>
+                    </div>
+                    <div className="relative">
+                      <svg className="w-20 h-20 transform -rotate-90">
+                        <circle cx="40" cy="40" r="34" stroke="#e5e7eb" strokeWidth="8" fill="none"/>
+                        <circle
+                          cx="40"
+                          cy="40"
+                          r="34"
+                          stroke="#46a758"
+                          strokeWidth="8"
+                          fill="none"
+                          strokeDasharray="213.628"
+                          strokeDashoffset="21.36"
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-3xl font-bold text-green-500">92</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
