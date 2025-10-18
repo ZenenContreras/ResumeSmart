@@ -157,7 +157,7 @@ const Hero = () => {
                           cx="40"
                           cy="40"
                           r="34"
-                          stroke="#46a758"
+                          stroke="#c27bff"
                           strokeWidth="8"
                           fill="none"
                           strokeDasharray="213.628"
@@ -166,7 +166,7 @@ const Hero = () => {
                         />
                       </svg>
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-3xl font-bold text-green-500">92</span>
+                        <span className="text-3xl font-bold text-purple-500">92</span>
                       </div>
                     </div>
                   </div>
